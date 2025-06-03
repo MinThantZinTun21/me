@@ -1,98 +1,172 @@
 "use client"
-
-import type React from "react"
-
-import { Badge } from "@/components/ui/badge"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Smartphone,
-  Users,
   GraduationCap,
   Video,
   CreditCard,
   ShoppingCart,
   Heart,
   Car,
-  Dumbbell,
-  Truck,
   Share2,
   Mail,
   Phone,
-  MapPin,
-  Calendar,
   Award,
   BookOpen,
   Github,
+  Linkedin,
+  Twitter,
+  Star,
+  Code,
+  ExternalLink,
 } from "lucide-react"
 import Image from "next/image"
 
-export default function MaterialAndroidDeveloper() {
+export default function ElegantAndroidDeveloper() {
+  const mouseRef = useRef({ x: 0, y: 0 })
+
+  // Projects data - showing 10+ projects
+  const projects = [
+    {
+      title: "Banking App",
+      category: "Finance",
+      description: "Secure mobile banking application with biometric authentication and real-time transactions.",
+      technologies: ["Kotlin", "MVVM", "Biometrics API", "Room DB"],
+      icon: CreditCard,
+    },
+    {
+      title: "Video Streaming Platform",
+      category: "Entertainment",
+      description: "High-performance video streaming app with offline viewing and personalized recommendations.",
+      technologies: ["Kotlin", "ExoPlayer", "Firebase", "ML Kit"],
+      icon: Video,
+    },
+    {
+      title: "E-commerce Solution",
+      category: "Retail",
+      description: "Feature-rich shopping app with AR product visualization and secure payment processing.",
+      technologies: ["Java", "AR Core", "Payment SDK", "Firebase"],
+      icon: ShoppingCart,
+    },
+    {
+      title: "Telehealth Platform",
+      category: "Healthcare",
+      description: "HIPAA-compliant telehealth solution with video consultations and prescription management.",
+      technologies: ["Kotlin", "WebRTC", "HIPAA Compliance", "Room DB"],
+      icon: Heart,
+    },
+    {
+      title: "Ride Sharing App",
+      category: "Transportation",
+      description: "Location-based ride sharing application with real-time tracking and payment integration.",
+      technologies: ["Java", "Google Maps API", "Realtime DB", "Payment Gateway"],
+      icon: Car,
+    },
+    {
+      title: "Social Network",
+      category: "Social",
+      description: "Feature-rich social platform with real-time messaging and content sharing capabilities.",
+      technologies: ["Kotlin", "Firebase", "ExoPlayer", "WorkManager"],
+      icon: Share2,
+    },
+    {
+      title: "Fitness Tracker",
+      category: "Health & Fitness",
+      description: "Comprehensive fitness tracking app with workout plans and health metrics monitoring.",
+      technologies: ["Kotlin", "Health Connect API", "Room DB", "Charts"],
+      icon: Award,
+    },
+    {
+      title: "Learning Platform",
+      category: "Education",
+      description: "Interactive learning application with progress tracking and certification.",
+      technologies: ["Java", "ExoPlayer", "Firebase", "PDF Rendering"],
+      icon: BookOpen,
+    },
+    {
+      title: "Food Delivery",
+      category: "Service",
+      description: "On-demand food delivery platform with real-time order tracking and restaurant management.",
+      technologies: ["Kotlin", "Google Maps", "Push Notifications", "Payment SDK"],
+      icon: Phone,
+    },
+    {
+      title: "Smart Home Control",
+      category: "IoT",
+      description: "IoT application for controlling smart home devices with voice commands and automation.",
+      technologies: ["Kotlin", "Bluetooth LE", "Voice Recognition", "MQTT"],
+      icon: Smartphone,
+    },
+  ]
+
   const domains = [
     {
       name: "Finance",
       icon: CreditCard,
       description: "Banking & payment solutions",
-      color: "bg-blue-100 text-blue-700",
+      projects: "15+ Projects",
     },
     {
       name: "Video Streaming",
       icon: Video,
       description: "Media & entertainment apps",
-      color: "bg-purple-100 text-purple-700",
+      projects: "8+ Projects",
     },
     {
       name: "E-commerce",
       icon: ShoppingCart,
       description: "Online shopping platforms",
-      color: "bg-indigo-100 text-indigo-700",
+      projects: "12+ Projects",
     },
-    { name: "Telehealth", icon: Heart, description: "Healthcare & medical apps", color: "bg-pink-100 text-pink-700" },
     {
-      name: "Taxi Apps",
+      name: "Telehealth",
+      icon: Heart,
+      description: "Healthcare & medical apps",
+      projects: "6+ Projects",
+    },
+    {
+      name: "Transportation",
       icon: Car,
-      description: "Transportation & ride-sharing",
-      color: "bg-cyan-100 text-cyan-700",
-    },
-    {
-      name: "Gym & Fitness",
-      icon: Dumbbell,
-      description: "Health & wellness apps",
-      color: "bg-teal-100 text-teal-700",
-    },
-    {
-      name: "Delivery",
-      icon: Truck,
-      description: "Logistics & delivery services",
-      color: "bg-violet-100 text-violet-700",
+      description: "Ride-sharing & logistics",
+      projects: "10+ Projects",
     },
     {
       name: "Social",
       icon: Share2,
       description: "Social networking platforms",
-      color: "bg-sky-100 text-sky-700",
+      projects: "7+ Projects",
     },
   ]
 
-  const integrations = [
-    { name: "Zoom SDK", color: "bg-blue-50 text-blue-800 border-blue-200" },
-    { name: "Twilio", color: "bg-purple-50 text-purple-800 border-purple-200" },
-    { name: "Google Maps", color: "bg-cyan-50 text-cyan-800 border-cyan-200" },
-    { name: "Google Places", color: "bg-teal-50 text-teal-800 border-teal-200" },
-    { name: "Stream Chat", color: "bg-indigo-50 text-indigo-800 border-indigo-200" },
-    { name: "WebSocket", color: "bg-slate-50 text-slate-800 border-slate-200" },
-    { name: "Pushy Notifications", color: "bg-violet-50 text-violet-800 border-violet-200" },
-    { name: "Facebook SDK", color: "bg-sky-50 text-sky-800 border-sky-200" },
-    { name: "Google Auth", color: "bg-emerald-50 text-emerald-800 border-emerald-200" },
+  const skills = [
+    { name: "Android Development", level: 95, years: "10+" },
+    { name: "Kotlin & Java", level: 92, years: "8+" },
+    { name: "Architecture Patterns", level: 90, years: "7+" },
+    { name: "Performance Optimization", level: 88, years: "6+" },
+    { name: "Team Leadership", level: 85, years: "5+" },
+    { name: "Flutter", level: 75, years: "1+" },
   ]
 
-  const skills = [
-    { name: "Legacy Code Maintenance", level: 95, color: "bg-gradient-to-r from-blue-400 to-blue-600" },
-    { name: "Performance Optimization", level: 90, color: "bg-gradient-to-r from-purple-400 to-purple-600" },
-    { name: "Greenfield Projects", level: 88, color: "bg-gradient-to-r from-indigo-400 to-indigo-600" },
-    { name: "Code Architecture", level: 92, color: "bg-gradient-to-r from-cyan-400 to-cyan-600" },
-    { name: "Team Leadership", level: 85, color: "bg-gradient-to-r from-teal-400 to-teal-600" },
-    { name: "Technical Mentoring", level: 90, color: "bg-gradient-to-r from-violet-400 to-violet-600" },
+  const achievements = [
+    { number: "50+", label: "Apps Delivered" },
+    { number: "10+", label: "Years Experience" },
+    { number: "15+", label: "Team Members Led" },
+    { number: "1M+", label: "App Downloads" },
   ]
+
+  // Mouse tracking for subtle parallax effects
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = {
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      }
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   const handleSendMessage = () => {
     const subject = "Let's Discuss Your Android Project"
@@ -106,263 +180,444 @@ Best regards,`
     window.open(gmailUrl, "_blank")
   }
 
-  const handleLetsConnect = () => {
-    const subject = "Let's Connect - Android Development Opportunity"
-    const body = `Hello Min Thant Zin Tun,
-
-I came across your impressive portfolio and would love to connect with you regarding potential collaboration opportunities.
-
-Looking forward to hearing from you!
-
-Best regards,`
-
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=minthantzintun21@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    window.open(gmailUrl, "_blank")
-  }
-
   const handleGithubClick = () => {
     window.open("https://github.com/MinThantZinTun21", "_blank")
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
-      {/* Animated Wave Background */}
-      <div className="wave-background">
-        <svg
-          className="waves"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28"
-          preserveAspectRatio="none"
-          shapeRendering="auto"
-        >
+    <div className="min-h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
+      {/* Animated Background Pattern */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        {/* SVG Pattern Background */}
+        <svg className="absolute w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(245, 158, 11, 0.3)" strokeWidth="1" />
+            </pattern>
+            <pattern id="circles" width="100" height="100" patternUnits="userSpaceOnUse">
+              <circle cx="50" cy="50" r="20" fill="none" stroke="rgba(245, 158, 11, 0.2)" strokeWidth="0.5" />
+            </pattern>
+            <linearGradient id="amber-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgba(245, 158, 11, 0.1)" />
+              <stop offset="50%" stopColor="rgba(217, 119, 6, 0.05)" />
+              <stop offset="100%" stopColor="rgba(180, 83, 9, 0.1)" />
+            </linearGradient>
           </defs>
-          <g className="parallax">
-            <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(224, 247, 250, 0.4)" />
-            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(179, 136, 235, 0.3)" />
-            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(74, 144, 226, 0.2)" />
-            <use xlinkHref="#gentle-wave" x="48" y="7" fill="rgba(255, 255, 255, 0.1)" />
-          </g>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+          <rect width="100%" height="100%" fill="url(#circles)" />
+          <rect width="100%" height="100%" fill="url(#amber-gradient)" />
         </svg>
+
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-amber-600/5 to-amber-800/10 blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-amber-500/5 to-amber-700/10 blur-3xl animate-float-delay"></div>
+
+        {/* Animated Lines */}
+        <div className="lines">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="line"></div>
+          ))}
+        </div>
       </div>
 
-      {/* Wave Animation CSS */}
+      {/* CSS for Advanced Animations */}
       <style jsx>{`
-        .wave-background {
-          position: fixed;
+        @keyframes float {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+          50% { transform: translateY(-20px) scale(1.05); opacity: 0.7; }
+        }
+        
+        @keyframes float-delay {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+          50% { transform: translateY(20px) scale(1.05); opacity: 0.7; }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+          50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.5); }
+        }
+        
+        @keyframes rotate-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        .animate-float {
+          animation: float 15s ease-in-out infinite;
+        }
+        
+        .animate-float-delay {
+          animation: float-delay 18s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+          animation: pulse-glow 4s ease-in-out infinite;
+        }
+        
+        .animate-rotate-slow {
+          animation: rotate-slow 60s linear infinite;
+        }
+        
+        /* Animated Lines */
+        .lines {
+          position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
+          right: 0;
+          bottom: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        
+        .line {
+          position: absolute;
+          width: 1px;
           height: 100%;
-          z-index: -1;
+          top: 0;
+          left: 50%;
+          background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.2), transparent);
           overflow: hidden;
         }
         
-        .waves {
+        .line::after {
+          content: '';
+          display: block;
           position: absolute;
+          height: 15vh;
           width: 100%;
-          height: 100%;
-          bottom: 0;
+          top: -50%;
           left: 0;
-          transform: translateY(50%);
+          background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.6), transparent);
+          animation: drop 7s 0s infinite;
+          animation-fill-mode: forwards;
+          animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
         }
         
-        .parallax > use {
-          animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        @keyframes drop {
+          0% { top: -50%; }
+          100% { top: 110%; }
         }
         
-        .parallax > use:nth-child(1) {
-          animation-delay: -2s;
-          animation-duration: 7s;
+        .line:nth-child(1) { left: 10%; animation-delay: 0.5s; }
+        .line:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .line:nth-child(3) { left: 30%; animation-delay: 1.5s; }
+        .line:nth-child(4) { left: 40%; animation-delay: 2s; }
+        .line:nth-child(5) { left: 50%; animation-delay: 2.5s; }
+        .line:nth-child(6) { left: 60%; animation-delay: 3s; }
+        .line:nth-child(7) { left: 70%; animation-delay: 3.5s; }
+        .line:nth-child(8) { left: 80%; animation-delay: 4s; }
+        .line:nth-child(9) { left: 90%; animation-delay: 4.5s; }
+        .line:nth-child(10) { left: 95%; animation-delay: 5s; }
+        
+        /* Project Card Hover Effects */
+        .project-card {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(245, 158, 11, 0.1);
         }
         
-        .parallax > use:nth-child(2) {
-          animation-delay: -3s;
-          animation-duration: 10s;
+        .project-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.2);
+          border: 1px solid rgba(245, 158, 11, 0.3);
         }
         
-        .parallax > use:nth-child(3) {
-          animation-delay: -4s;
-          animation-duration: 13s;
+        .project-card:hover .project-icon {
+          transform: scale(1.1) rotate(10deg);
+          background: linear-gradient(145deg, rgba(245, 158, 11, 0.8), rgba(217, 119, 6, 1));
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
-        .parallax > use:nth-child(4) {
-          animation-delay: -5s;
-          animation-duration: 20s;
+        .project-icon {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
-        @keyframes move-forever {
-          0% {
-            transform: translate3d(-90px, 0, 0);
-          }
-          100% {
-            transform: translate3d(85px, 0, 0);
-          }
-        }
-        
-        /* Additional animations */
-        @keyframes float-gentle {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-        }
-        
-        @keyframes pulse-soft {
-          0%, 100% { transform: scale(1); opacity: 0.9; }
-          50% { transform: scale(1.05); opacity: 1; }
-        }
-        
-        @keyframes section-fade-in {
-          0% { opacity: 0; transform: translateY(30px); }
-          100% { opacity: 1; transform: translateY(0px); }
-        }
-        
-        @keyframes skill-bar-fill {
-          0% { width: 0%; }
-          100% { width: var(--skill-width); }
-        }
-        
-        .animate-float-gentle { animation: float-gentle 6s ease-in-out infinite; }
-        .animate-pulse-soft { animation: pulse-soft 4s ease-in-out infinite; }
-        .section-container { animation: section-fade-in 1s ease-out; }
-        .animate-skill-fill { animation: skill-bar-fill 2s ease-out forwards; }
       `}</style>
 
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-32 section-container">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            {/* Profile Image */}
-            <div className="relative">
-              <div
-                className="w-80 h-80 rounded-full overflow-hidden shadow-2xl animate-pulse-soft"
-                style={{ background: "linear-gradient(135deg, #4A90E2, #357ABD)", padding: "6px" }}
-              >
-                <div className="w-full h-full rounded-full overflow-hidden" style={{ backgroundColor: "#FFFFFF" }}>
-                  <Image
-                    src="https://github.com/MinThantZinTun21.png"
-                    alt="Min Thant Zin Tun - Android Developer"
-                    width={320}
-                    height={320}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+      {/* Navigation with Profile Image */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-amber-900/20">
+        <div className="max-w-7xl mx-auto px-8 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center">
+                <Smartphone className="w-5 h-5 text-black" />
               </div>
-              <div
-                className="absolute -bottom-6 -right-6 p-4 rounded-full shadow-lg animate-float-gentle"
-                style={{ background: "linear-gradient(135deg, #4A90E2, #357ABD)" }}
-              >
-                <Smartphone className="w-8 h-8 text-white" />
-              </div>
-              <div
-                className="absolute -top-6 -left-6 p-4 rounded-full shadow-lg animate-pulse-soft"
-                style={{ backgroundColor: "#1F2933" }}
-              >
-                <Github className="w-8 h-8 text-white" />
+              <span className="text-xl font-bold">Min Thant Zin Tun</span>
+            </div>
+
+            {/* Profile Image in Nav */}
+            <div className="hidden md:block">
+              <div className="w-[125px] h-[125px] relative overflow-hidden rounded-full border-4 border-amber-600/30 animate-pulse-glow">
+                <Image
+                  src="https://github.com/MinThantZinTun21.png"
+                  alt="Min Thant Zin Tun - Android Developer"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
 
-            {/* Hero Content */}
-            <div className="flex-1 text-center lg:text-left space-y-8">
-              <div
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full text-sm font-medium animate-pulse-soft"
-                style={{ backgroundColor: "#E0F7FA", color: "#357ABD" }}
-              >
-                <Award className="w-5 h-5" />
-                Senior Android Developer
+            <div className="flex items-center space-x-4">
+              <div className="hidden md:flex items-center space-x-8">
+                <a href="#about" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  About
+                </a>
+                <a href="#projects" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  Projects
+                </a>
+                <a href="#experience" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  Experience
+                </a>
+                <a href="#contact" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  Contact
+                </a>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight" style={{ color: "#1F2933" }}>
-                Min Thant Zin Tun
-              </h1>
+              <button onClick={handleGithubClick} className="p-2 text-gray-400 hover:text-amber-400 transition-colors">
+                <Github className="w-5 h-5" />
+              </button>
+              <Button
+                onClick={handleSendMessage}
+                className="bg-amber-600 hover:bg-amber-700 text-black font-medium px-6 py-2 rounded-lg transition-all duration-300"
+              >
+                Get In Touch
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-              <p className="text-2xl leading-relaxed max-w-3xl" style={{ color: "#4A5568" }}>
-                Crafting exceptional mobile experiences for over a decade. Specialized in building robust, scalable
-                Android applications across finance, healthcare, and social platforms.
-              </p>
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center relative pt-40">
+        <div className="max-w-7xl mx-auto px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Star className="w-5 h-5 text-amber-400" />
+                  <span className="text-amber-400 font-medium tracking-wide">SENIOR ANDROID DEVELOPER</span>
+                </div>
 
-              {/* Quick Stats */}
-              <div className="flex flex-wrap gap-8">
-                <div className="flex items-center gap-3" style={{ color: "#4A5568" }}>
-                  <Calendar className="w-6 h-6" style={{ color: "#4A90E2" }} />
-                  <span className="font-medium text-lg">10+ Years Experience</span>
-                </div>
-                <div className="flex items-center gap-3" style={{ color: "#4A5568" }}>
-                  <MapPin className="w-6 h-6" style={{ color: "#B388EB" }} />
-                  <span className="font-medium text-lg">Myanmar</span>
-                </div>
-                <div className="flex items-center gap-3" style={{ color: "#4A5568" }}>
-                  <BookOpen className="w-6 h-6" style={{ color: "#357ABD" }} />
-                  <span className="font-medium text-lg">Teaching & Mentoring</span>
-                </div>
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+                  <span className="text-white">Android</span>
+                  <br />
+                  <span className="text-amber-400">Development</span>
+                  <br />
+                  <span className="text-gray-300">Expert</span>
+                </h1>
+
+                <p className="text-xl text-gray-400 leading-relaxed max-w-lg">
+                  Crafting exceptional mobile experiences for over a decade. Specialized in building robust, scalable
+                  Android applications across finance, healthcare, and social platforms.
+                </p>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-6">
+                {achievements.slice(0, 2).map((achievement, index) => (
+                  <div key={index} className="text-center lg:text-left">
+                    <div className="text-3xl font-bold text-amber-400">{achievement.number}</div>
+                    <div className="text-gray-400 text-sm">{achievement.label}</div>
+                  </div>
+                ))}
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  size="lg"
-                  className="rounded-full px-10 py-6 text-lg font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden group"
-                  style={{ background: "linear-gradient(135deg, #4A90E2, #357ABD)", color: "white" }}
-                  onClick={handleLetsConnect}
+                  onClick={handleSendMessage}
+                  className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center"
                 >
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <Mail className="mr-3 h-6 w-6 relative z-10" />
-                  <span className="relative z-10">Let's Connect</span>
+                  <Mail className="w-5 h-5 mr-2" />
+                  Start a Project
                 </Button>
                 <Button
-                  size="lg"
-                  className="rounded-full px-10 py-6 text-lg font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2"
-                  style={{ backgroundColor: "transparent", color: "#1F2933", borderColor: "#C8D6E5" }}
                   onClick={handleGithubClick}
+                  variant="outline"
+                  className="border-amber-600 text-amber-400 hover:bg-amber-600 hover:text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center"
                 >
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ backgroundColor: "#1F2933" }}
-                  ></div>
-                  <Github className="mr-3 h-6 w-6 relative z-10 group-hover:text-white transition-colors duration-300" />
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                    View GitHub
-                  </span>
+                  <Github className="w-5 h-5 mr-2" />
+                  View Portfolio
                 </Button>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex items-center space-x-6 pt-4">
+                <span className="text-gray-500 text-sm">Follow me:</span>
+                <div className="flex space-x-4">
+                  <button
+                    onClick={handleGithubClick}
+                    className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group"
+                  >
+                    <Github className="w-5 h-5 text-gray-400 group-hover:text-black" />
+                  </button>
+                  <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
+                    <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-black" />
+                  </button>
+                  <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
+                    <Twitter className="w-5 h-5 text-gray-400 group-hover:text-black" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content - Stats and Info */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-amber-600/10 to-amber-800/10 rounded-3xl blur-xl"></div>
+              <div className="relative bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-3xl p-8 border border-amber-900/20">
+                <div className="grid grid-cols-2 gap-6">
+                  {achievements.map((achievement, index) => (
+                    <div key={index} className="text-center p-4 bg-black/30 rounded-xl border border-amber-900/10">
+                      <div className="text-3xl font-bold text-amber-400">{achievement.number}</div>
+                      <div className="text-gray-400 text-sm">{achievement.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 space-y-4">
+                  <h3 className="text-xl font-semibold text-white">Core Expertise</h3>
+                  <div className="space-y-3">
+                    {skills.slice(0, 3).map((skill, index) => (
+                      <div key={index} className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium text-white">{skill.name}</span>
+                          <span className="text-amber-400 text-sm">{skill.years}</span>
+                        </div>
+                        <div className="w-full bg-gray-800 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-amber-400 to-amber-600 h-2 rounded-full transition-all duration-1000"
+                            style={{ width: `${skill.level}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-32 section-container">
+      {/* About Section */}
+      <section id="about" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="space-y-8 max-w-3xl mx-auto">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-px bg-amber-400"></div>
+                <span className="text-amber-400 font-medium tracking-wide">ABOUT ME</span>
+              </div>
+
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+                My professional career spans <span className="text-amber-400">10+ years</span>, specializing in Android
+                development
+              </h2>
+
+              <p className="text-lg text-gray-400 leading-relaxed">
+                I've dedicated my career to mastering the art of mobile development, with a particular focus on Android
+                applications. From startups to enterprise solutions, I've helped bring countless ideas to life through
+                clean, efficient, and user-centered mobile experiences.
+              </p>
+
+              <p className="text-lg text-gray-400 leading-relaxed">
+                Beyond development, I'm passionate about mentoring the next generation of developers and sharing
+                knowledge through teaching and community involvement.
+              </p>
+            </div>
+
+            {/* Skills Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {skills.map((skill, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium text-white">{skill.name}</span>
+                    <span className="text-amber-400 text-sm">{skill.years}</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-amber-400 to-amber-600 h-2 rounded-full transition-all duration-1000"
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Education & Certifications */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-white">Education & Experience</h3>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <GraduationCap className="w-5 h-5 text-amber-400" />
+                  <span className="text-gray-300">Bachelor of Computer Science - Thaton University</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Award className="w-5 h-5 text-amber-400" />
+                  <span className="text-gray-300">Android Development Instructor - 1.5 years</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <BookOpen className="w-5 h-5 text-amber-400" />
+                  <span className="text-gray-300">Software Engineering Diploma - 6 months</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section - New Layout */}
+      <section id="projects" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold mb-6" style={{ color: "#1F2933" }}>
-              Core Expertise
-            </h2>
-            <p className="text-2xl max-w-3xl mx-auto" style={{ color: "#4A5568" }}>
-              Proven track record in mobile development with measurable impact
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="w-12 h-px bg-amber-400"></div>
+              <span className="text-amber-400 font-medium tracking-wide">MY WORK</span>
+              <div className="w-12 h-px bg-amber-400"></div>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Featured Projects</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              A selection of my best work across various industries
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {skills.map((skill, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-3xl shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl transform hover:scale-105 bg-white/80"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="flex justify-between items-center mb-6">
-                  <span className="font-bold text-xl" style={{ color: "#1F2933" }}>
-                    {skill.name}
-                  </span>
-                  <span className="text-lg font-medium" style={{ color: "#4A5568" }}>
-                    {skill.level}%
-                  </span>
-                </div>
-                <div className="w-full h-4 rounded-full" style={{ backgroundColor: "#E2E8F0" }}>
-                  <div
-                    className={`h-4 rounded-full ${skill.color} animate-skill-fill`}
-                    style={{ "--skill-width": `${skill.level}%` } as React.CSSProperties}
-                  ></div>
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="project-card rounded-2xl overflow-hidden">
+                <div className="p-6 space-y-4">
+                  <div className="project-icon w-14 h-14 bg-gradient-to-br from-amber-500/80 to-amber-700 rounded-xl flex items-center justify-center">
+                    <project.icon className="w-7 h-7 text-black" />
+                  </div>
+
+                  <div>
+                    <span className="text-amber-400 text-sm font-medium">{project.category}</span>
+                    <h3 className="text-xl font-bold text-white mt-1">{project.title}</h3>
+                  </div>
+
+                  <p className="text-gray-400">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="text-xs font-medium px-3 py-1 rounded-full bg-gray-800 text-gray-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 flex justify-between items-center">
+                    <button className="text-amber-400 hover:text-amber-300 transition-colors flex items-center text-sm font-medium">
+                      <Code className="w-4 h-4 mr-1" />
+                      View Details
+                    </button>
+                    <button className="text-gray-400 hover:text-amber-400 transition-colors">
+                      <ExternalLink className="w-5 h-5" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -370,227 +625,178 @@ Best regards,`
         </div>
       </section>
 
-      {/* Domain Expertise */}
-      <section className="py-32 section-container">
+      {/* Experience Section - New Layout */}
+      <section id="experience" className="py-32 bg-gradient-to-b from-transparent to-gray-900/50">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold mb-6" style={{ color: "#1F2933" }}>
-              Industry Experience
-            </h2>
-            <p className="text-2xl max-w-3xl mx-auto" style={{ color: "#4A5568" }}>
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="w-12 h-px bg-amber-400"></div>
+              <span className="text-amber-400 font-medium tracking-wide">EXPERTISE</span>
+              <div className="w-12 h-px bg-amber-400"></div>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Industry Experience</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Diverse portfolio across multiple industries and application types
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {domains.map((domain, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-3xl backdrop-blur-sm hover:shadow-xl transform hover:scale-105 transition-all duration-300 group text-center bg-white/80"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div
-                  className={`w-20 h-20 rounded-2xl ${domain.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <domain.icon className="w-10 h-10" />
-                </div>
-                <h3 className="font-bold text-xl mb-3" style={{ color: "#1F2933" }}>
-                  {domain.name}
-                </h3>
-                <p className="text-base" style={{ color: "#4A5568" }}>
-                  {domain.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          {/* Experience Timeline */}
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-amber-600/30 via-amber-500/50 to-amber-600/30"></div>
 
-      {/* Technical Integrations */}
-      <section className="py-32 section-container">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-20 p-12 rounded-3xl backdrop-blur-sm bg-white/80">
-            <h2 className="text-5xl font-bold mb-6" style={{ color: "#1F2933" }}>
-              Technical Integrations
-            </h2>
-            <p className="text-2xl max-w-3xl mx-auto mb-12" style={{ color: "#4A5568" }}>
-              Extensive experience with modern APIs and third-party services
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              {integrations.map((integration, index) => (
-                <Badge
-                  key={index}
-                  className={`${integration.color} px-6 py-3 rounded-full font-medium border-2 hover:scale-105 transition-transform duration-200 cursor-default text-base`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {integration.name}
-                </Badge>
+            <div className="space-y-24">
+              {domains.map((domain, index) => (
+                <div key={index} className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
+                  <div className="w-1/2 px-8">
+                    <div className={`${index % 2 === 0 ? "text-right" : "text-left"}`}>
+                      <h3 className="text-2xl font-bold text-white mb-2">{domain.name}</h3>
+                      <p className="text-gray-400 mb-3">{domain.description}</p>
+                      <span className="text-amber-400 font-medium">{domain.projects}</span>
+                    </div>
+                  </div>
+
+                  {/* Timeline Node */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full flex items-center justify-center border-4 border-black animate-pulse-glow">
+                    <domain.icon className="w-6 h-6 text-black" />
+                  </div>
+
+                  <div className="w-1/2 px-8">{/* Empty space for alignment */}</div>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Education & Teaching */}
-      <section className="py-32 section-container">
+      {/* Technical Skills */}
+      <section className="py-32">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="p-12 rounded-3xl backdrop-blur-sm hover:shadow-xl transition-all duration-300 bg-white/80">
-              <div
-                className="w-20 h-20 rounded-2xl flex items-center justify-center mb-8"
-                style={{ backgroundColor: "#E0F7FA", color: "#357ABD" }}
-              >
-                <GraduationCap className="w-10 h-10" />
-              </div>
-              <h3 className="text-3xl font-bold mb-8" style={{ color: "#1F2933" }}>
-                Education
-              </h3>
-              <div className="space-y-8">
-                <div className="p-6 rounded-2xl" style={{ backgroundColor: "#F7FAFC" }}>
-                  <h4 className="font-bold text-xl mb-2" style={{ color: "#1F2933" }}>
-                    Bachelor of Computer Science
-                  </h4>
-                  <p className="text-lg" style={{ color: "#4A5568" }}>
-                    Thaton University
-                  </p>
-                </div>
-                <div className="p-6 rounded-2xl" style={{ backgroundColor: "#F7FAFC" }}>
-                  <h4 className="font-bold text-xl mb-2" style={{ color: "#1F2933" }}>
-                    Diploma in Software Engineering
-                  </h4>
-                  <p className="text-lg" style={{ color: "#4A5568" }}>
-                    6-month intensive program
-                  </p>
-                </div>
-              </div>
+          <div className="text-center mb-20">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="w-12 h-px bg-amber-400"></div>
+              <span className="text-amber-400 font-medium tracking-wide">TECHNICAL SKILLS</span>
+              <div className="w-12 h-px bg-amber-400"></div>
             </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Technologies & Tools</h2>
+          </div>
 
-            <div className="p-12 rounded-3xl backdrop-blur-sm hover:shadow-xl transition-all duration-300 bg-white/80">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {[
+              "Android Studio",
+              "Kotlin",
+              "Java",
+              "Flutter",
+              "Firebase",
+              "Git",
+              "REST APIs",
+              "MVVM",
+              "Room DB",
+              "Retrofit",
+              "Dagger",
+              "RxJava",
+            ].map((tech, index) => (
               <div
-                className="w-20 h-20 rounded-2xl flex items-center justify-center mb-8"
-                style={{ backgroundColor: "#F0E6FF", color: "#B388EB" }}
+                key={index}
+                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 text-center group"
               >
-                <Users className="w-10 h-10" />
+                <span className="text-gray-300 group-hover:text-amber-400 transition-colors duration-300 font-medium">
+                  {tech}
+                </span>
               </div>
-              <h3 className="text-3xl font-bold mb-8" style={{ color: "#1F2933" }}>
-                Teaching & Mentoring
-              </h3>
-              <div className="space-y-6">
-                <div className="p-6 rounded-2xl" style={{ backgroundColor: "#F7FAFC" }}>
-                  <h4 className="font-bold text-xl mb-3" style={{ color: "#1F2933" }}>
-                    Android Development Instructor
-                  </h4>
-                  <p className="text-lg mb-4" style={{ color: "#4A5568" }}>
-                    1.5 years of teaching experience
-                  </p>
-                  <p className="text-base" style={{ color: "#718096" }}>
-                    Mentored 50+ aspiring developers in Android fundamentals, best practices, and real-world application
-                    development
-                  </p>
-                </div>
-                <div className="p-6 rounded-2xl" style={{ backgroundColor: "#E0F7FA" }}>
-                  <h4 className="font-bold text-xl mb-2" style={{ color: "#1F2933" }}>
-                    Flutter Development
-                  </h4>
-                  <p className="text-lg" style={{ color: "#4A5568" }}>
-                    6 months of cross-platform experience
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 section-container">
-        <div className="max-w-5xl mx-auto px-8">
-          <div
-            className="p-16 rounded-3xl text-white overflow-hidden relative text-center"
-            style={{ background: "linear-gradient(135deg, #4A90E2, #357ABD)" }}
-          >
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="relative">
-              <h2 className="text-5xl font-bold mb-8">Ready to Build Something Amazing?</h2>
-              <p className="text-2xl mb-12 opacity-90 max-w-3xl mx-auto">
-                Let's discuss your next mobile project and create exceptional user experiences together
+      <section id="contact" className="py-32 bg-gradient-to-b from-transparent to-black">
+        <div className="max-w-4xl mx-auto px-8 text-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className="w-12 h-px bg-amber-400"></div>
+                <span className="text-amber-400 font-medium tracking-wide">GET IN TOUCH</span>
+                <div className="w-12 h-px bg-amber-400"></div>
+              </div>
+
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+                Ready to build something <span className="text-amber-400">amazing</span> together?
+              </h2>
+
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                Let's discuss your next mobile project and create exceptional user experiences that drive results.
               </p>
+            </div>
 
-              {/* Contact Info */}
-              <div className="flex flex-col sm:flex-row gap-8 justify-center mb-12">
-                <a
-                  href="mailto:minthantzintun21@gmail.com"
-                  className="flex items-center justify-center gap-4 bg-white/20 backdrop-blur-sm rounded-full px-8 py-4 hover:bg-white/30 transition-all duration-300 text-lg"
-                >
-                  <Mail className="w-6 h-6" />
-                  <span className="font-medium">minthantzintun21@gmail.com</span>
-                </a>
-                <a
-                  href="tel:+959975816345"
-                  className="flex items-center justify-center gap-4 bg-white/20 backdrop-blur-sm rounded-full px-8 py-4 hover:bg-white/30 transition-all duration-300 text-lg"
-                >
-                  <Phone className="w-6 h-6" />
-                  <span className="font-medium">+959975816345</span>
-                </a>
-              </div>
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <a
+                href="mailto:minthantzintun21@gmail.com"
+                className="flex items-center justify-center gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-amber-600 hover:to-amber-700 rounded-xl px-8 py-4 border border-gray-700 hover:border-amber-600 transition-all duration-300 group"
+              >
+                <Mail className="w-5 h-5 text-gray-400 group-hover:text-black" />
+                <span className="font-medium text-gray-300 group-hover:text-black">minthantzintun21@gmail.com</span>
+              </a>
+              <a
+                href="tel:+959975816345"
+                className="flex items-center justify-center gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-amber-600 hover:to-amber-700 rounded-xl px-8 py-4 border border-gray-700 hover:border-amber-600 transition-all duration-300 group"
+              >
+                <Phone className="w-5 h-5 text-gray-400 group-hover:text-black" />
+                <span className="font-medium text-gray-300 group-hover:text-black">+959975816345</span>
+              </a>
+            </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-10 py-6 text-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden group"
-                  onClick={handleSendMessage}
-                >
-                  <div className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <Mail className="mr-3 h-6 w-6 relative z-10" />
-                  <span className="relative z-10">Send Message</span>
-                </Button>
-                <Button
-                  size="lg"
-                  className="bg-gray-900 text-white hover:bg-gray-800 rounded-full px-10 py-6 text-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden group"
-                  onClick={handleGithubClick}
-                >
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <Github className="mr-3 h-6 w-6 relative z-10" />
-                  <span className="relative z-10">GitHub Profile</span>
-                </Button>
-              </div>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+              <Button
+                onClick={handleSendMessage}
+                className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-10 py-4 rounded-xl transition-all duration-300 text-lg"
+              >
+                <Mail className="w-5 h-5 mr-2" />
+                Send Message
+              </Button>
+              <Button
+                onClick={handleGithubClick}
+                variant="outline"
+                className="border-amber-600 text-amber-400 hover:bg-amber-600 hover:text-black font-semibold px-10 py-4 rounded-xl transition-all duration-300 text-lg"
+              >
+                <Github className="w-5 h-5 mr-2" />
+                View GitHub
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-white/80">
-        <div className="max-w-7xl mx-auto px-8 text-center">
-          <div className="flex justify-center items-center mb-6">
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mr-4"
-              style={{ background: "linear-gradient(135deg, #4A90E2, #357ABD)" }}
-            >
-              <Smartphone className="w-8 h-8 text-white" />
+      <footer className="py-12 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center">
+                <Smartphone className="w-5 h-5 text-black" />
+              </div>
+              <span className="text-xl font-bold">Min Thant Zin Tun</span>
             </div>
-            <span className="text-3xl font-bold" style={{ color: "#1F2933" }}>
-              Min Thant Zin Tun
-            </span>
+
+            <p className="text-gray-400">© 2024 Min Thant Zin Tun. All rights reserved.</p>
+
+            <div className="flex space-x-4">
+              <button
+                onClick={handleGithubClick}
+                className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group"
+              >
+                <Github className="w-5 h-5 text-gray-400 group-hover:text-black" />
+              </button>
+              <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
+                <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-black" />
+              </button>
+              <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
+                <Twitter className="w-5 h-5 text-gray-400 group-hover:text-black" />
+              </button>
+            </div>
           </div>
-          <p className="text-xl mb-8" style={{ color: "#4A5568" }}>
-            Building exceptional mobile experiences with passion and precision
-          </p>
-          <div className="flex justify-center items-center gap-6 mb-6">
-            <a
-              href="https://github.com/MinThantZinTun21"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 transition-colors duration-200 text-lg"
-              style={{ color: "#4A5568" }}
-            >
-              <Github className="w-6 h-6" />
-              <span className="font-medium">@MinThantZinTun21</span>
-            </a>
-          </div>
-          <p className="text-base" style={{ color: "#718096" }}>
-            © 2024 Min Thant Zin Tun. All rights reserved.
-          </p>
         </div>
       </footer>
     </div>
