@@ -8,8 +8,12 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "*.{js,ts,jsx,tsx,mdx}"
   ],
-  theme: {
+	theme: {
   	extend: {
+  		fontFamily: {
+  			script: ['var(--font-caveat)', 'cursive'],
+  			sans: ['var(--font-quicksand)', 'system-ui', 'sans-serif'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -44,6 +48,11 @@ const config: Config = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
+  			sun: 'hsl(var(--sun))',
+  			'sun-glow': 'hsl(var(--sun-glow))',
+  			'sky-deep': 'hsl(var(--sky-deep))',
+  			'sky-mid': 'hsl(var(--sky-mid))',
+  			'sky-soft': 'hsl(var(--sky-soft))',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
@@ -83,11 +92,21 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+  			'ray-pulse': {
+  				'0%, 100%': { opacity: '0.35', transform: 'scaleY(1)' },
+  				'50%': { opacity: '0.7', transform: 'scaleY(1.08)' },
+  			},
+  			'cloud-drift': {
+  				'0%': { transform: 'translateX(0)' },
+  				'100%': { transform: 'translateX(40px)' },
+  			},
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'ray-pulse': 'ray-pulse 6s ease-in-out infinite',
+  			'cloud-drift': 'cloud-drift 18s ease-in-out infinite alternate',
   		}
   	}
   },

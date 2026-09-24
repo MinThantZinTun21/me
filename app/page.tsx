@@ -1,172 +1,117 @@
 "use client"
-import { useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
+
+import { useRef } from "react"
+import Image from "next/image"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import {
-  Smartphone,
-  GraduationCap,
-  Video,
-  CreditCard,
-  ShoppingCart,
-  Heart,
-  Car,
-  Share2,
-  Mail,
-  Phone,
   Award,
   BookOpen,
+  Car,
+  CreditCard,
   Github,
+  GraduationCap,
+  Heart,
   Linkedin,
-  Twitter,
-  Star,
-  Code,
-  ExternalLink,
+  Mail,
+  Phone,
+  Share2,
+  ShoppingCart,
+  Smartphone,
+  Video,
 } from "lucide-react"
-import Image from "next/image"
+import { SiteNav } from "@/components/sunshine/site-nav"
+import { SunshineSky } from "@/components/sunshine/sunshine-sky"
 
-export default function ElegantAndroidDeveloper() {
-  const mouseRef = useRef({ x: 0, y: 0 })
+gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-  // Projects data - showing 10+ projects
-  const projects = [
-    {
-      title: "Banking App",
-      category: "Finance",
-      description: "Secure mobile banking application with biometric authentication and real-time transactions.",
-      technologies: ["Kotlin", "MVVM", "Biometrics API", "Room DB"],
-      icon: CreditCard,
-    },
-    {
-      title: "Video Streaming Platform",
-      category: "Entertainment",
-      description: "High-performance video streaming app with offline viewing and personalized recommendations.",
-      technologies: ["Kotlin", "ExoPlayer", "Firebase", "ML Kit"],
-      icon: Video,
-    },
-    {
-      title: "E-commerce Solution",
-      category: "Retail",
-      description: "Feature-rich shopping app with AR product visualization and secure payment processing.",
-      technologies: ["Java", "AR Core", "Payment SDK", "Firebase"],
-      icon: ShoppingCart,
-    },
-    {
-      title: "Telehealth Platform",
-      category: "Healthcare",
-      description: "HIPAA-compliant telehealth solution with video consultations and prescription management.",
-      technologies: ["Kotlin", "WebRTC", "HIPAA Compliance", "Room DB"],
-      icon: Heart,
-    },
-    {
-      title: "Ride Sharing App",
-      category: "Transportation",
-      description: "Location-based ride sharing application with real-time tracking and payment integration.",
-      technologies: ["Java", "Google Maps API", "Realtime DB", "Payment Gateway"],
-      icon: Car,
-    },
-    {
-      title: "Social Network",
-      category: "Social",
-      description: "Feature-rich social platform with real-time messaging and content sharing capabilities.",
-      technologies: ["Kotlin", "Firebase", "ExoPlayer", "WorkManager"],
-      icon: Share2,
-    },
-    {
-      title: "Fitness Tracker",
-      category: "Health & Fitness",
-      description: "Comprehensive fitness tracking app with workout plans and health metrics monitoring.",
-      technologies: ["Kotlin", "Health Connect API", "Room DB", "Charts"],
-      icon: Award,
-    },
-    {
-      title: "Learning Platform",
-      category: "Education",
-      description: "Interactive learning application with progress tracking and certification.",
-      technologies: ["Java", "ExoPlayer", "Firebase", "PDF Rendering"],
-      icon: BookOpen,
-    },
-    {
-      title: "Food Delivery",
-      category: "Service",
-      description: "On-demand food delivery platform with real-time order tracking and restaurant management.",
-      technologies: ["Kotlin", "Google Maps", "Push Notifications", "Payment SDK"],
-      icon: Phone,
-    },
-    {
-      title: "Smart Home Control",
-      category: "IoT",
-      description: "IoT application for controlling smart home devices with voice commands and automation.",
-      technologies: ["Kotlin", "Bluetooth LE", "Voice Recognition", "MQTT"],
-      icon: Smartphone,
-    },
-  ]
+const projects = [
+  {
+    title: "Banking App",
+    category: "Finance",
+    description:
+      "Secure mobile banking with biometrics and real-time transactions.",
+    technologies: ["Kotlin", "MVVM", "Biometrics", "Room"],
+    icon: CreditCard,
+  },
+  {
+    title: "Video Streaming",
+    category: "Entertainment",
+    description:
+      "High-performance streaming with offline viewing and recommendations.",
+    technologies: ["Kotlin", "ExoPlayer", "Firebase", "ML Kit"],
+    icon: Video,
+  },
+  {
+    title: "E-commerce",
+    category: "Retail",
+    description:
+      "Shopping app with AR product previews and secure payments.",
+    technologies: ["Java", "AR Core", "Payments", "Firebase"],
+    icon: ShoppingCart,
+  },
+  {
+    title: "Telehealth",
+    category: "Healthcare",
+    description:
+      "HIPAA-aware telehealth with video consults and prescriptions.",
+    technologies: ["Kotlin", "WebRTC", "Room", "Compliance"],
+    icon: Heart,
+  },
+  {
+    title: "Ride Sharing",
+    category: "Transportation",
+    description:
+      "Location-based rides with live tracking and payments.",
+    technologies: ["Java", "Maps", "Realtime DB", "Payments"],
+    icon: Car,
+  },
+  {
+    title: "Social Network",
+    category: "Social",
+    description:
+      "Messaging and content sharing built for mobile-first feeds.",
+    technologies: ["Kotlin", "Firebase", "ExoPlayer", "WorkManager"],
+    icon: Share2,
+  },
+]
 
-  const domains = [
-    {
-      name: "Finance",
-      icon: CreditCard,
-      description: "Banking & payment solutions",
-      projects: "15+ Projects",
-    },
-    {
-      name: "Video Streaming",
-      icon: Video,
-      description: "Media & entertainment apps",
-      projects: "8+ Projects",
-    },
-    {
-      name: "E-commerce",
-      icon: ShoppingCart,
-      description: "Online shopping platforms",
-      projects: "12+ Projects",
-    },
-    {
-      name: "Telehealth",
-      icon: Heart,
-      description: "Healthcare & medical apps",
-      projects: "6+ Projects",
-    },
-    {
-      name: "Transportation",
-      icon: Car,
-      description: "Ride-sharing & logistics",
-      projects: "10+ Projects",
-    },
-    {
-      name: "Social",
-      icon: Share2,
-      description: "Social networking platforms",
-      projects: "7+ Projects",
-    },
-  ]
+const domains = [
+  { name: "Finance", icon: CreditCard, description: "Banking & payments", projects: "15+" },
+  { name: "Streaming", icon: Video, description: "Media & entertainment", projects: "8+" },
+  { name: "Commerce", icon: ShoppingCart, description: "Retail platforms", projects: "12+" },
+  { name: "Health", icon: Heart, description: "Telehealth apps", projects: "6+" },
+  { name: "Mobility", icon: Car, description: "Rides & logistics", projects: "10+" },
+  { name: "Social", icon: Share2, description: "Community products", projects: "7+" },
+]
 
-  const skills = [
-    { name: "Android Development", level: 95, years: "10+" },
-    { name: "Kotlin & Java", level: 92, years: "8+" },
-    { name: "Architecture Patterns", level: 90, years: "7+" },
-    { name: "Performance Optimization", level: 88, years: "6+" },
-    { name: "Team Leadership", level: 85, years: "5+" },
-    { name: "Flutter", level: 75, years: "1+" },
-  ]
+const skills = [
+  { name: "Android Development", level: 95, years: "10+" },
+  { name: "Kotlin & Java", level: 92, years: "8+" },
+  { name: "Architecture Patterns", level: 90, years: "7+" },
+  { name: "Performance", level: 88, years: "6+" },
+  { name: "Team Leadership", level: 85, years: "5+" },
+  { name: "Flutter", level: 75, years: "1+" },
+]
 
-  const achievements = [
-    { number: "50+", label: "Apps Delivered" },
-    { number: "10+", label: "Years Experience" },
-    { number: "15+", label: "Team Members Led" },
-    { number: "1M+", label: "App Downloads" },
-  ]
+const techs = [
+  "Android Studio",
+  "Kotlin",
+  "Java",
+  "Flutter",
+  "Firebase",
+  "Git",
+  "REST APIs",
+  "MVVM",
+  "Room DB",
+  "Retrofit",
+  "Dagger",
+  "RxJava",
+]
 
-  // Mouse tracking for subtle parallax effects
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = {
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1,
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+export default function SunshinePortfolio() {
+  const pageRef = useRef<HTMLDivElement>(null)
 
   const handleSendMessage = () => {
     const subject = "Let's Discuss Your Android Project"
@@ -175,7 +120,6 @@ export default function ElegantAndroidDeveloper() {
 I visited your portfolio and I'm interested in discussing a potential Android development project.
 
 Best regards,`
-
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=minthantzintun21@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     window.open(gmailUrl, "_blank")
   }
@@ -184,618 +128,368 @@ Best regards,`
     window.open("https://github.com/MinThantZinTun21", "_blank")
   }
 
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } })
+        heroTl
+          .from(".hero-brand", { y: 48, opacity: 0, duration: 0.9 })
+          .from(".hero-headline", { y: 36, opacity: 0, duration: 0.8 }, "-=0.45")
+          .from(".hero-copy", { y: 24, opacity: 0, duration: 0.7 }, "-=0.4")
+          .from(".hero-cta", { y: 20, opacity: 0, duration: 0.6, stagger: 0.08 }, "-=0.35")
+
+        gsap.utils.toArray<HTMLElement>(".reveal-section").forEach((section) => {
+          gsap.from(section.querySelectorAll(".reveal-item"), {
+            opacity: 0,
+            y: 28,
+            duration: 0.55,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%",
+            },
+          })
+        })
+
+        gsap.from(".project-tile", {
+          opacity: 0,
+          scale: 0.92,
+          y: 20,
+          duration: 0.45,
+          stagger: { each: 0.06, from: "start", grid: "auto" },
+          ease: "back.out(1.4)",
+          scrollTrigger: {
+            trigger: "#projects-grid",
+            start: "top 80%",
+          },
+        })
+
+        const pinSection = document.querySelector("#journey-pin")
+        if (pinSection && window.matchMedia("(min-width: 768px)").matches) {
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: pinSection,
+                start: "top top",
+                end: "+=120%",
+                scrub: 1,
+                pin: true,
+              },
+            })
+            .from(".journey-item", {
+              opacity: 0,
+              x: (i) => (i % 2 === 0 ? -40 : 40),
+              stagger: 0.15,
+            })
+            .to(".journey-progress", { scaleX: 1, ease: "none" }, 0)
+        }
+
+        gsap.fromTo(
+          ".skill-fill",
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            transformOrigin: "left center",
+            duration: 0.9,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: "#skills",
+              start: "top 75%",
+            },
+          },
+        )
+      })
+
+      return () => mm.revert()
+    },
+    { scope: pageRef },
+  )
+
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
-      {/* Animated Background Pattern */}
-      <div className="fixed inset-0 z-0 overflow-hidden">
-        {/* SVG Pattern Background */}
-        <svg className="absolute w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(245, 158, 11, 0.3)" strokeWidth="1" />
-            </pattern>
-            <pattern id="circles" width="100" height="100" patternUnits="userSpaceOnUse">
-              <circle cx="50" cy="50" r="20" fill="none" stroke="rgba(245, 158, 11, 0.2)" strokeWidth="0.5" />
-            </pattern>
-            <linearGradient id="amber-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(245, 158, 11, 0.1)" />
-              <stop offset="50%" stopColor="rgba(217, 119, 6, 0.05)" />
-              <stop offset="100%" stopColor="rgba(180, 83, 9, 0.1)" />
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-          <rect width="100%" height="100%" fill="url(#circles)" />
-          <rect width="100%" height="100%" fill="url(#amber-gradient)" />
-        </svg>
+    <div id="top" ref={pageRef} className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <SiteNav onContact={handleSendMessage} onGithub={handleGithubClick} />
 
-        {/* Animated Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-amber-600/5 to-amber-800/10 blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-amber-500/5 to-amber-700/10 blur-3xl animate-float-delay"></div>
-
-        {/* Animated Lines */}
-        <div className="lines">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="line"></div>
-          ))}
-        </div>
-      </div>
-
-      {/* CSS for Advanced Animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
-          50% { transform: translateY(-20px) scale(1.05); opacity: 0.7; }
-        }
-        
-        @keyframes float-delay {
-          0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
-          50% { transform: translateY(20px) scale(1.05); opacity: 0.7; }
-        }
-        
-        @keyframes pulse-glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.5); }
-        }
-        
-        @keyframes rotate-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .animate-float {
-          animation: float 15s ease-in-out infinite;
-        }
-        
-        .animate-float-delay {
-          animation: float-delay 18s ease-in-out infinite;
-        }
-        
-        .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
-        }
-        
-        .animate-rotate-slow {
-          animation: rotate-slow 60s linear infinite;
-        }
-        
-        /* Animated Lines */
-        .lines {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow: hidden;
-          pointer-events: none;
-        }
-        
-        .line {
-          position: absolute;
-          width: 1px;
-          height: 100%;
-          top: 0;
-          left: 50%;
-          background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.2), transparent);
-          overflow: hidden;
-        }
-        
-        .line::after {
-          content: '';
-          display: block;
-          position: absolute;
-          height: 15vh;
-          width: 100%;
-          top: -50%;
-          left: 0;
-          background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.6), transparent);
-          animation: drop 7s 0s infinite;
-          animation-fill-mode: forwards;
-          animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-        }
-        
-        @keyframes drop {
-          0% { top: -50%; }
-          100% { top: 110%; }
-        }
-        
-        .line:nth-child(1) { left: 10%; animation-delay: 0.5s; }
-        .line:nth-child(2) { left: 20%; animation-delay: 1s; }
-        .line:nth-child(3) { left: 30%; animation-delay: 1.5s; }
-        .line:nth-child(4) { left: 40%; animation-delay: 2s; }
-        .line:nth-child(5) { left: 50%; animation-delay: 2.5s; }
-        .line:nth-child(6) { left: 60%; animation-delay: 3s; }
-        .line:nth-child(7) { left: 70%; animation-delay: 3.5s; }
-        .line:nth-child(8) { left: 80%; animation-delay: 4s; }
-        .line:nth-child(9) { left: 90%; animation-delay: 4.5s; }
-        .line:nth-child(10) { left: 95%; animation-delay: 5s; }
-        
-        /* Project Card Hover Effects */
-        .project-card {
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.8));
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(245, 158, 11, 0.1);
-        }
-        
-        .project-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.2);
-          border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        
-        .project-card:hover .project-icon {
-          transform: scale(1.1) rotate(10deg);
-          background: linear-gradient(145deg, rgba(245, 158, 11, 0.8), rgba(217, 119, 6, 1));
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .project-icon {
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-      `}</style>
-
-      {/* Navigation with Profile Image */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-amber-900/20">
-        <div className="max-w-7xl mx-auto px-8 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-black" />
-              </div>
-              <span className="text-xl font-bold">Min Thant Zin Tun</span>
-            </div>
-
-            {/* Profile Image in Nav */}
-            <div className="hidden md:block">
-              <div className="w-[125px] h-[125px] relative overflow-hidden rounded-full border-4 border-amber-600/30 animate-pulse-glow">
-                <Image
-                  src="https://github.com/MinThantZinTun21.png"
-                  alt="Min Thant Zin Tun - Android Developer"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="hidden md:flex items-center space-x-8">
-                <a href="#about" className="text-gray-300 hover:text-amber-400 transition-colors">
-                  About
-                </a>
-                <a href="#projects" className="text-gray-300 hover:text-amber-400 transition-colors">
-                  Projects
-                </a>
-                <a href="#experience" className="text-gray-300 hover:text-amber-400 transition-colors">
-                  Experience
-                </a>
-                <a href="#contact" className="text-gray-300 hover:text-amber-400 transition-colors">
-                  Contact
-                </a>
-              </div>
-
-              <button onClick={handleGithubClick} className="p-2 text-gray-400 hover:text-amber-400 transition-colors">
-                <Github className="w-5 h-5" />
-              </button>
-              <Button
+      {/* Hero — brand, headline, line, CTAs, full-bleed sky */}
+      <section className="relative flex min-h-[100svh] items-end pb-16 pt-28 md:items-center md:pb-24 md:pt-24">
+        <SunshineSky />
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-8">
+          <div className="max-w-2xl space-y-6">
+            <p className="hero-brand font-script text-5xl leading-none text-sky-deep md:text-7xl lg:text-8xl">
+              Min Thant Zin Tun
+            </p>
+            <h1 className="hero-headline text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
+              Android that feels like morning light
+            </h1>
+            <p className="hero-copy max-w-lg text-lg text-muted-foreground md:text-xl">
+              Ten years of shipping mobile products that stay fast, clear, and kind to users.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
                 onClick={handleSendMessage}
-                className="bg-amber-600 hover:bg-amber-700 text-black font-medium px-6 py-2 rounded-lg transition-all duration-300"
+                className="hero-cta inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-accent-foreground shadow-lg transition-transform duration-200 hover:scale-[1.03] focus-ring"
               >
-                Get In Touch
-              </Button>
+                <Mail className="h-5 w-5" />
+                Start a project
+              </button>
+              <a
+                href="#projects"
+                className="hero-cta inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full border border-sky-deep/20 bg-white/50 px-8 text-base font-semibold text-sky-deep backdrop-blur-sm transition-colors duration-200 hover:bg-white/80 focus-ring"
+              >
+                See the work
+              </a>
             </div>
           </div>
         </div>
-      </nav>
+      </section>
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative pt-40">
-        <div className="max-w-7xl mx-auto px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Star className="w-5 h-5 text-amber-400" />
-                  <span className="text-amber-400 font-medium tracking-wide">SENIOR ANDROID DEVELOPER</span>
-                </div>
+      {/* About */}
+      <section id="about" className="reveal-section relative z-10 py-[var(--space-3xl)]">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-8">
+          <div className="space-y-6">
+            <p className="reveal-item font-script text-3xl text-primary md:text-4xl">About</p>
+            <h2 className="reveal-item text-3xl font-semibold leading-tight md:text-4xl">
+              Building mobile stories across{" "}
+              <span className="text-primary">finance, health, and play</span>
+            </h2>
+            <p className="reveal-item text-lg text-muted-foreground">
+              I&apos;ve spent a decade shaping Android apps for startups and enterprise teams —
+              clean architecture, careful performance, and experiences people actually enjoy.
+            </p>
+            <p className="reveal-item text-lg text-muted-foreground">
+              Outside of shipping, I teach and mentor so the next wave of developers can move faster with confidence.
+            </p>
+            <ul className="reveal-item space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-foreground/80">
+                <GraduationCap className="h-5 w-5 text-accent" />
+                B.Sc. Computer Science — Thaton University
+              </li>
+              <li className="flex items-center gap-3 text-foreground/80">
+                <Award className="h-5 w-5 text-accent" />
+                Android Development Instructor — 1.5 years
+              </li>
+              <li className="flex items-center gap-3 text-foreground/80">
+                <BookOpen className="h-5 w-5 text-accent" />
+                Software Engineering Diploma — 6 months
+              </li>
+            </ul>
+          </div>
 
-                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  <span className="text-white">Android</span>
-                  <br />
-                  <span className="text-amber-400">Development</span>
-                  <br />
-                  <span className="text-gray-300">Expert</span>
-                </h1>
-
-                <p className="text-xl text-gray-400 leading-relaxed max-w-lg">
-                  Crafting exceptional mobile experiences for over a decade. Specialized in building robust, scalable
-                  Android applications across finance, healthcare, and social platforms.
-                </p>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-6">
-                {achievements.slice(0, 2).map((achievement, index) => (
-                  <div key={index} className="text-center lg:text-left">
-                    <div className="text-3xl font-bold text-amber-400">{achievement.number}</div>
-                    <div className="text-gray-400 text-sm">{achievement.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  onClick={handleSendMessage}
-                  className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  Start a Project
-                </Button>
-                <Button
-                  onClick={handleGithubClick}
-                  variant="outline"
-                  className="border-amber-600 text-amber-400 hover:bg-amber-600 hover:text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center"
-                >
-                  <Github className="w-5 h-5 mr-2" />
-                  View Portfolio
-                </Button>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex items-center space-x-6 pt-4">
-                <span className="text-gray-500 text-sm">Follow me:</span>
-                <div className="flex space-x-4">
-                  <button
-                    onClick={handleGithubClick}
-                    className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group"
-                  >
-                    <Github className="w-5 h-5 text-gray-400 group-hover:text-black" />
-                  </button>
-                  <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
-                    <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-black" />
-                  </button>
-                  <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
-                    <Twitter className="w-5 h-5 text-gray-400 group-hover:text-black" />
-                  </button>
-                </div>
-              </div>
+          <div className="reveal-item relative mx-auto w-full max-w-sm">
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-sun/40 via-sky-mid/20 to-transparent blur-2xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 shadow-xl">
+              <Image
+                src="https://github.com/MinThantZinTun21.png"
+                alt="Portrait of Min Thant Zin Tun"
+                width={480}
+                height={480}
+                className="aspect-square w-full object-cover"
+                priority
+              />
             </div>
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              {[
+                { number: "50+", label: "Apps delivered" },
+                { number: "10+", label: "Years building" },
+                { number: "15+", label: "People led" },
+                { number: "1M+", label: "Downloads" },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-2xl bg-white/70 px-4 py-3 text-center shadow-sm backdrop-blur-sm">
+                  <div className="font-script text-3xl text-sky-deep">{stat.number}</div>
+                  <div className="text-xs font-medium text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right Content - Stats and Info */}
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-amber-600/10 to-amber-800/10 rounded-3xl blur-xl"></div>
-              <div className="relative bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-3xl p-8 border border-amber-900/20">
-                <div className="grid grid-cols-2 gap-6">
-                  {achievements.map((achievement, index) => (
-                    <div key={index} className="text-center p-4 bg-black/30 rounded-xl border border-amber-900/10">
-                      <div className="text-3xl font-bold text-amber-400">{achievement.number}</div>
-                      <div className="text-gray-400 text-sm">{achievement.label}</div>
-                    </div>
+      {/* Projects */}
+      <section id="projects" className="reveal-section relative bg-white/40 py-[var(--space-3xl)]">
+        <div className="mx-auto max-w-6xl px-6 md:px-8">
+          <div className="mb-14 max-w-2xl space-y-4">
+            <p className="reveal-item font-script text-3xl text-primary md:text-4xl">Projects</p>
+            <h2 className="reveal-item text-3xl font-semibold md:text-4xl">Work that ships in the sun</h2>
+            <p className="reveal-item text-lg text-muted-foreground">
+              Selected apps across industries — each one tuned for clarity, speed, and trust.
+            </p>
+          </div>
+
+          <div id="projects-grid" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <article
+                key={project.title}
+                className="project-tile group cursor-pointer rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-sun text-accent-foreground transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">
+                  <project.icon className="h-6 w-6" />
+                </div>
+                <p className="text-sm font-medium text-primary">{project.category}</p>
+                <h3 className="mt-1 text-xl font-semibold">{project.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+                    >
+                      {tech}
+                    </span>
                   ))}
                 </div>
-
-                <div className="mt-8 space-y-4">
-                  <h3 className="text-xl font-semibold text-white">Core Expertise</h3>
-                  <div className="space-y-3">
-                    {skills.slice(0, 3).map((skill, index) => (
-                      <div key={index} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium text-white">{skill.name}</span>
-                          <span className="text-amber-400 text-sm">{skill.years}</span>
-                        </div>
-                        <div className="w-full bg-gray-800 rounded-full h-2">
-                          <div
-                            className="bg-gradient-to-r from-amber-400 to-amber-600 h-2 rounded-full transition-all duration-1000"
-                            style={{ width: `${skill.level}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-32 relative">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="space-y-8 max-w-3xl mx-auto">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-px bg-amber-400"></div>
-                <span className="text-amber-400 font-medium tracking-wide">ABOUT ME</span>
-              </div>
-
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                My professional career spans <span className="text-amber-400">10+ years</span>, specializing in Android
-                development
-              </h2>
-
-              <p className="text-lg text-gray-400 leading-relaxed">
-                I've dedicated my career to mastering the art of mobile development, with a particular focus on Android
-                applications. From startups to enterprise solutions, I've helped bring countless ideas to life through
-                clean, efficient, and user-centered mobile experiences.
-              </p>
-
-              <p className="text-lg text-gray-400 leading-relaxed">
-                Beyond development, I'm passionate about mentoring the next generation of developers and sharing
-                knowledge through teaching and community involvement.
-              </p>
-            </div>
-
-            {/* Skills Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium text-white">{skill.name}</span>
-                    <span className="text-amber-400 text-sm">{skill.years}</span>
-                  </div>
-                  <div className="w-full bg-gray-800 rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-amber-400 to-amber-600 h-2 rounded-full transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Education & Certifications */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-white">Education & Experience</h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <GraduationCap className="w-5 h-5 text-amber-400" />
-                  <span className="text-gray-300">Bachelor of Computer Science - Thaton University</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Award className="w-5 h-5 text-amber-400" />
-                  <span className="text-gray-300">Android Development Instructor - 1.5 years</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <BookOpen className="w-5 h-5 text-amber-400" />
-                  <span className="text-gray-300">Software Engineering Diploma - 6 months</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section - New Layout */}
-      <section id="projects" className="py-32 relative">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-20">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-12 h-px bg-amber-400"></div>
-              <span className="text-amber-400 font-medium tracking-wide">MY WORK</span>
-              <div className="w-12 h-px bg-amber-400"></div>
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Featured Projects</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              A selection of my best work across various industries
-            </p>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="project-card rounded-2xl overflow-hidden">
-                <div className="p-6 space-y-4">
-                  <div className="project-icon w-14 h-14 bg-gradient-to-br from-amber-500/80 to-amber-700 rounded-xl flex items-center justify-center">
-                    <project.icon className="w-7 h-7 text-black" />
-                  </div>
-
-                  <div>
-                    <span className="text-amber-400 text-sm font-medium">{project.category}</span>
-                    <h3 className="text-xl font-bold text-white mt-1">{project.title}</h3>
-                  </div>
-
-                  <p className="text-gray-400">{project.description}</p>
-
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="text-xs font-medium px-3 py-1 rounded-full bg-gray-800 text-gray-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="pt-4 flex justify-between items-center">
-                    <button className="text-amber-400 hover:text-amber-300 transition-colors flex items-center text-sm font-medium">
-                      <Code className="w-4 h-4 mr-1" />
-                      View Details
-                    </button>
-                    <button className="text-gray-400 hover:text-amber-400 transition-colors">
-                      <ExternalLink className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Experience Section - New Layout */}
-      <section id="experience" className="py-32 bg-gradient-to-b from-transparent to-gray-900/50">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-20">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-12 h-px bg-amber-400"></div>
-              <span className="text-amber-400 font-medium tracking-wide">EXPERTISE</span>
-              <div className="w-12 h-px bg-amber-400"></div>
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Industry Experience</h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Diverse portfolio across multiple industries and application types
-            </p>
-          </div>
-
-          {/* Experience Timeline */}
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-amber-600/30 via-amber-500/50 to-amber-600/30"></div>
-
-            <div className="space-y-24">
-              {domains.map((domain, index) => (
-                <div key={index} className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
-                  <div className="w-1/2 px-8">
-                    <div className={`${index % 2 === 0 ? "text-right" : "text-left"}`}>
-                      <h3 className="text-2xl font-bold text-white mb-2">{domain.name}</h3>
-                      <p className="text-gray-400 mb-3">{domain.description}</p>
-                      <span className="text-amber-400 font-medium">{domain.projects}</span>
-                    </div>
-                  </div>
-
-                  {/* Timeline Node */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full flex items-center justify-center border-4 border-black animate-pulse-glow">
-                    <domain.icon className="w-6 h-6 text-black" />
-                  </div>
-
-                  <div className="w-1/2 px-8">{/* Empty space for alignment */}</div>
-                </div>
-              ))}
+      {/* Journey — pinned on desktop */}
+      <section id="journey" className="relative">
+        <div id="journey-pin" className="mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-6 py-24 md:px-8">
+          <div className="mb-10 space-y-3">
+            <p className="font-script text-3xl text-primary md:text-4xl">Journey</p>
+            <h2 className="text-3xl font-semibold md:text-4xl">Industries I&apos;ve lit up</h2>
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-border">
+              <div className="journey-progress h-full w-full origin-left scale-x-0 rounded-full bg-gradient-to-r from-accent via-sun to-primary" />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Technical Skills */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-20">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-12 h-px bg-amber-400"></div>
-              <span className="text-amber-400 font-medium tracking-wide">TECHNICAL SKILLS</span>
-              <div className="w-12 h-px bg-amber-400"></div>
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Technologies & Tools</h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {[
-              "Android Studio",
-              "Kotlin",
-              "Java",
-              "Flutter",
-              "Firebase",
-              "Git",
-              "REST APIs",
-              "MVVM",
-              "Room DB",
-              "Retrofit",
-              "Dagger",
-              "RxJava",
-            ].map((tech, index) => (
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {domains.map((domain) => (
               <div
-                key={index}
-                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 text-center group"
+                key={domain.name}
+                className="journey-item flex items-start gap-4 rounded-3xl border border-border bg-white/70 p-5 backdrop-blur-sm"
               >
-                <span className="text-gray-300 group-hover:text-amber-400 transition-colors duration-300 font-medium">
-                  {tech}
-                </span>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+                  <domain.icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">{domain.name}</h3>
+                  <p className="text-sm text-muted-foreground">{domain.description}</p>
+                  <p className="mt-1 text-sm font-semibold text-accent">{domain.projects} projects</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-32 bg-gradient-to-b from-transparent to-black">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="flex items-center justify-center space-x-3 mb-4">
-                <div className="w-12 h-px bg-amber-400"></div>
-                <span className="text-amber-400 font-medium tracking-wide">GET IN TOUCH</span>
-                <div className="w-12 h-px bg-amber-400"></div>
+      {/* Skills */}
+      <section id="skills" className="reveal-section bg-gradient-to-b from-transparent to-sky-soft py-[var(--space-3xl)]">
+        <div className="mx-auto max-w-6xl px-6 md:px-8">
+          <div className="mb-12 space-y-3">
+            <p className="reveal-item font-script text-3xl text-primary md:text-4xl">Craft</p>
+            <h2 className="reveal-item text-3xl font-semibold md:text-4xl">Skills & tools</h2>
+          </div>
+
+          <div className="mb-14 grid gap-6 md:grid-cols-2">
+            {skills.map((skill) => (
+              <div key={skill.name} className="reveal-item space-y-2">
+                <div className="flex justify-between text-sm font-medium">
+                  <span>{skill.name}</span>
+                  <span className="text-primary">{skill.years}</span>
+                </div>
+                <div className="h-2.5 overflow-hidden rounded-full bg-border">
+                  <div
+                    className="skill-fill h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                    style={{ width: `${skill.level}%` }}
+                  />
+                </div>
               </div>
+            ))}
+          </div>
 
-              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                Ready to build something <span className="text-amber-400">amazing</span> together?
-              </h2>
-
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                Let's discuss your next mobile project and create exceptional user experiences that drive results.
-              </p>
-            </div>
-
-            {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a
-                href="mailto:minthantzintun21@gmail.com"
-                className="flex items-center justify-center gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-amber-600 hover:to-amber-700 rounded-xl px-8 py-4 border border-gray-700 hover:border-amber-600 transition-all duration-300 group"
+          <div className="flex flex-wrap gap-3">
+            {techs.map((tech) => (
+              <span
+                key={tech}
+                className="reveal-item rounded-full border border-border bg-white/80 px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-200 hover:border-primary hover:text-primary"
               >
-                <Mail className="w-5 h-5 text-gray-400 group-hover:text-black" />
-                <span className="font-medium text-gray-300 group-hover:text-black">minthantzintun21@gmail.com</span>
-              </a>
-              <a
-                href="tel:+959975816345"
-                className="flex items-center justify-center gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-amber-600 hover:to-amber-700 rounded-xl px-8 py-4 border border-gray-700 hover:border-amber-600 transition-all duration-300 group"
-              >
-                <Phone className="w-5 h-5 text-gray-400 group-hover:text-black" />
-                <span className="font-medium text-gray-300 group-hover:text-black">+959975816345</span>
-              </a>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <Button
-                onClick={handleSendMessage}
-                className="bg-amber-600 hover:bg-amber-700 text-black font-semibold px-10 py-4 rounded-xl transition-all duration-300 text-lg"
-              >
-                <Mail className="w-5 h-5 mr-2" />
-                Send Message
-              </Button>
-              <Button
-                onClick={handleGithubClick}
-                variant="outline"
-                className="border-amber-600 text-amber-400 hover:bg-amber-600 hover:text-black font-semibold px-10 py-4 rounded-xl transition-all duration-300 text-lg"
-              >
-                <Github className="w-5 h-5 mr-2" />
-                View GitHub
-              </Button>
-            </div>
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-black" />
-              </div>
-              <span className="text-xl font-bold">Min Thant Zin Tun</span>
-            </div>
+      {/* Contact climax */}
+      <section id="contact" className="reveal-section relative overflow-hidden py-[var(--space-3xl)]">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sun/30 via-sky-mid/20 to-primary/20" />
+        <div className="relative mx-auto max-w-3xl px-6 text-center md:px-8">
+          <p className="reveal-item font-script text-4xl text-sky-deep md:text-5xl">Let&apos;s build</p>
+          <h2 className="reveal-item mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+            Ready for something bright together?
+          </h2>
+          <p className="reveal-item mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+            Tell me about your next Android idea — I&apos;ll help turn it into a product that feels alive.
+          </p>
 
-            <p className="text-gray-400">© 2024 Min Thant Zin Tun. All rights reserved.</p>
+          <div className="reveal-item mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="mailto:minthantzintun21@gmail.com"
+              className="inline-flex h-12 min-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-full bg-white/80 px-6 font-medium text-sky-deep shadow-sm transition-colors duration-200 hover:bg-white focus-ring"
+            >
+              <Mail className="h-5 w-5" />
+              minthantzintun21@gmail.com
+            </a>
+            <a
+              href="tel:+959975816345"
+              className="inline-flex h-12 min-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-full bg-white/80 px-6 font-medium text-sky-deep shadow-sm transition-colors duration-200 hover:bg-white focus-ring"
+            >
+              <Phone className="h-5 w-5" />
+              +959975816345
+            </a>
+          </div>
 
-            <div className="flex space-x-4">
-              <button
-                onClick={handleGithubClick}
-                className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group"
-              >
-                <Github className="w-5 h-5 text-gray-400 group-hover:text-black" />
-              </button>
-              <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
-                <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-black" />
-              </button>
-              <button className="w-10 h-10 bg-gray-800 hover:bg-amber-600 rounded-lg flex items-center justify-center transition-all duration-300 group">
-                <Twitter className="w-5 h-5 text-gray-400 group-hover:text-black" />
-              </button>
+          <div className="reveal-item mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={handleSendMessage}
+              className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-lg transition-transform duration-200 hover:scale-[1.03] focus-ring"
+            >
+              <Mail className="h-5 w-5" />
+              Send a message
+            </button>
+            <button
+              type="button"
+              onClick={handleGithubClick}
+              className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full border border-sky-deep/25 bg-transparent px-10 text-base font-semibold text-sky-deep transition-colors duration-200 hover:bg-white/50 focus-ring"
+            >
+              <Github className="h-5 w-5" />
+              View GitHub
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border bg-white/60 py-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row md:px-8">
+          <div className="flex items-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-sun">
+              <Smartphone className="h-5 w-5 text-accent-foreground" />
             </div>
+            <span className="font-script text-2xl text-sky-deep">Min Thant Zin Tun</span>
+          </div>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Min Thant Zin Tun</p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handleGithubClick}
+              aria-label="GitHub"
+              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-sky-deep transition-colors duration-200 hover:bg-muted focus-ring"
+            >
+              <Github className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="LinkedIn"
+              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-sky-deep transition-colors duration-200 hover:bg-muted focus-ring"
+            >
+              <Linkedin className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </footer>
