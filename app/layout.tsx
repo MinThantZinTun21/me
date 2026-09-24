@@ -1,23 +1,22 @@
 import type { Metadata } from "next"
-import { Caveat, Quicksand } from "next/font/google"
+import { Exo_2, Orbitron } from "next/font/google"
 import "./globals.css"
 
-const caveat = Caveat({
+const orbitron = Orbitron({
   subsets: ["latin"],
-  variable: "--font-caveat",
+  variable: "--font-orbitron",
   display: "swap",
 })
 
-const quicksand = Quicksand({
+const exo = Exo_2({
   subsets: ["latin"],
-  variable: "--font-quicksand",
+  variable: "--font-exo",
   display: "swap",
 })
 
 export const metadata: Metadata = {
   title: "Min Thant Zin Tun — Android Developer",
-  description:
-    "Senior Android developer crafting warm, reliable mobile experiences across finance, health, and everyday apps.",
+  description: "Y2K-styled portfolio of a senior Android developer.",
 }
 
 export default function RootLayout({
@@ -26,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${caveat.variable} ${quicksand.variable}`}>
-      <body className={quicksand.className}>{children}</body>
+    <html lang="en" className={`${orbitron.variable} ${exo.variable}`}>
+      <body className={exo.className}>{children}</body>
     </html>
   )
 }

@@ -21,107 +21,43 @@ import {
   Smartphone,
   Video,
 } from "lucide-react"
-import { SiteNav } from "@/components/sunshine/site-nav"
-import { SunshineSky } from "@/components/sunshine/sunshine-sky"
+import { SiteNav } from "@/components/y2k/site-nav"
+import { Y2KBanner } from "@/components/y2k/banner"
+import { Y2KBubbles } from "@/components/y2k/bubbles"
+import { MagneticCard } from "@/components/y2k/magnetic-card"
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const projects = [
-  {
-    title: "Banking App",
-    category: "Finance",
-    description:
-      "Secure mobile banking with biometrics and real-time transactions.",
-    technologies: ["Kotlin", "MVVM", "Biometrics", "Room"],
-    icon: CreditCard,
-  },
-  {
-    title: "Video Streaming",
-    category: "Entertainment",
-    description:
-      "High-performance streaming with offline viewing and recommendations.",
-    technologies: ["Kotlin", "ExoPlayer", "Firebase", "ML Kit"],
-    icon: Video,
-  },
-  {
-    title: "E-commerce",
-    category: "Retail",
-    description:
-      "Shopping app with AR product previews and secure payments.",
-    technologies: ["Java", "AR Core", "Payments", "Firebase"],
-    icon: ShoppingCart,
-  },
-  {
-    title: "Telehealth",
-    category: "Healthcare",
-    description:
-      "HIPAA-aware telehealth with video consults and prescriptions.",
-    technologies: ["Kotlin", "WebRTC", "Room", "Compliance"],
-    icon: Heart,
-  },
-  {
-    title: "Ride Sharing",
-    category: "Transportation",
-    description:
-      "Location-based rides with live tracking and payments.",
-    technologies: ["Java", "Maps", "Realtime DB", "Payments"],
-    icon: Car,
-  },
-  {
-    title: "Social Network",
-    category: "Social",
-    description:
-      "Messaging and content sharing built for mobile-first feeds.",
-    technologies: ["Kotlin", "Firebase", "ExoPlayer", "WorkManager"],
-    icon: Share2,
-  },
-]
-
-const domains = [
-  { name: "Finance", icon: CreditCard, description: "Banking & payments", projects: "15+" },
-  { name: "Streaming", icon: Video, description: "Media & entertainment", projects: "8+" },
-  { name: "Commerce", icon: ShoppingCart, description: "Retail platforms", projects: "12+" },
-  { name: "Health", icon: Heart, description: "Telehealth apps", projects: "6+" },
-  { name: "Mobility", icon: Car, description: "Rides & logistics", projects: "10+" },
-  { name: "Social", icon: Share2, description: "Community products", projects: "7+" },
+  { title: "Banking App", category: "Finance", description: "Biometrics + realtime banking.", technologies: ["Kotlin", "MVVM", "Room"], icon: CreditCard },
+  { title: "Video Streaming", category: "Entertainment", description: "Offline + recommendations.", technologies: ["ExoPlayer", "Firebase"], icon: Video },
+  { title: "E-commerce", category: "Retail", description: "AR previews + payments.", technologies: ["Java", "AR Core"], icon: ShoppingCart },
+  { title: "Telehealth", category: "Healthcare", description: "Video consults + Rx.", technologies: ["WebRTC", "Room"], icon: Heart },
+  { title: "Ride Sharing", category: "Transport", description: "Live tracking + pay.", technologies: ["Maps", "Realtime"], icon: Car },
+  { title: "Social Network", category: "Social", description: "Messaging + feeds.", technologies: ["Firebase", "WorkManager"], icon: Share2 },
 ]
 
 const skills = [
-  { name: "Android Development", level: 95, years: "10+" },
-  { name: "Kotlin & Java", level: 92, years: "8+" },
-  { name: "Architecture Patterns", level: 90, years: "7+" },
-  { name: "Performance", level: 88, years: "6+" },
-  { name: "Team Leadership", level: 85, years: "5+" },
-  { name: "Flutter", level: 75, years: "1+" },
+  { name: "Android", level: 95 },
+  { name: "Kotlin / Java", level: 92 },
+  { name: "Architecture", level: 90 },
+  { name: "Performance", level: 88 },
+  { name: "Leadership", level: 85 },
+  { name: "Flutter", level: 75 },
 ]
 
-const techs = [
-  "Android Studio",
-  "Kotlin",
-  "Java",
-  "Flutter",
-  "Firebase",
-  "Git",
-  "REST APIs",
-  "MVVM",
-  "Room DB",
-  "Retrofit",
-  "Dagger",
-  "RxJava",
-]
+const techs = ["Kotlin", "Java", "Flutter", "Firebase", "MVVM", "Room", "Retrofit", "Dagger", "RxJava", "Git"]
 
-export default function SunshinePortfolio() {
+export default function Y2KPortfolio() {
   const pageRef = useRef<HTMLDivElement>(null)
 
   const handleSendMessage = () => {
     const subject = "Let's Discuss Your Android Project"
-    const body = `Hi Min Thant Zin Tun,
-
-I visited your portfolio and I'm interested in discussing a potential Android development project.
-
-Best regards,`
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=minthantzintun21@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    window.open(gmailUrl, "_blank")
+    const body = `Hi Min Thant Zin Tun,\n\nI visited your portfolio and I'm interested in discussing a potential Android development project.\n\nBest regards,`
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=minthantzintun21@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      "_blank",
+    )
   }
 
   const handleGithubClick = () => {
@@ -131,79 +67,56 @@ Best regards,`
   useGSAP(
     () => {
       const mm = gsap.matchMedia()
-
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } })
-        heroTl
-          .from(".hero-brand", { y: 48, opacity: 0, duration: 0.9 })
-          .from(".hero-headline", { y: 36, opacity: 0, duration: 0.8 }, "-=0.45")
-          .from(".hero-copy", { y: 24, opacity: 0, duration: 0.7 }, "-=0.4")
-          .from(".hero-cta", { y: 20, opacity: 0, duration: 0.6, stagger: 0.08 }, "-=0.35")
+        gsap
+          .timeline({ defaults: { ease: "back.out(1.4)" } })
+          .from(".hero-avatar", { scale: 0, rotate: -20, duration: 0.6 })
+          .from(".hero-brand", { y: 24, opacity: 0, duration: 0.45 }, "-=0.25")
+          .from(".hero-line", { y: 16, opacity: 0, duration: 0.4 }, "-=0.2")
+          .from(".hero-cta", { scale: 0.85, opacity: 0, duration: 0.35, stagger: 0.06 }, "-=0.15")
 
-        gsap.utils.toArray<HTMLElement>(".reveal-section").forEach((section) => {
-          gsap.from(section.querySelectorAll(".reveal-item"), {
-            opacity: 0,
-            y: 28,
-            duration: 0.55,
-            stagger: 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 82%",
-            },
-          })
+        gsap.from(".stat-chip", {
+          scale: 0.8,
+          opacity: 0,
+          stagger: 0.05,
+          duration: 0.35,
+          ease: "back.out(1.6)",
+          scrollTrigger: { trigger: "#stats", start: "top 90%" },
         })
 
         gsap.from(".project-tile", {
           opacity: 0,
-          scale: 0.92,
           y: 20,
-          duration: 0.45,
-          stagger: { each: 0.06, from: "start", grid: "auto" },
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: "#projects-grid",
-            start: "top 80%",
-          },
+          scale: 0.94,
+          duration: 0.4,
+          stagger: { each: 0.05, grid: "auto" },
+          ease: "back.out(1.3)",
+          scrollTrigger: { trigger: "#projects-grid", start: "top 85%" },
         })
-
-        const pinSection = document.querySelector("#journey-pin")
-        if (pinSection && window.matchMedia("(min-width: 768px)").matches) {
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: pinSection,
-                start: "top top",
-                end: "+=120%",
-                scrub: 1,
-                pin: true,
-              },
-            })
-            .from(".journey-item", {
-              opacity: 0,
-              x: (i) => (i % 2 === 0 ? -40 : 40),
-              stagger: 0.15,
-            })
-            .to(".journey-progress", { scaleX: 1, ease: "none" }, 0)
-        }
 
         gsap.fromTo(
           ".skill-fill",
           { scaleX: 0 },
           {
             scaleX: 1,
-            transformOrigin: "left center",
-            duration: 0.9,
-            stagger: 0.1,
+            transformOrigin: "left",
+            duration: 0.6,
+            stagger: 0.06,
             ease: "power2.out",
-            scrollTrigger: {
-              trigger: "#skills",
-              start: "top 75%",
-            },
+            scrollTrigger: { trigger: "#skills", start: "top 80%" },
           },
         )
-      })
 
+        gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 14,
+            duration: 0.4,
+            ease: "power2.out",
+            scrollTrigger: { trigger: el, start: "top 90%" },
+          })
+        })
+      })
       return () => mm.revert()
     },
     { scope: pageRef },
@@ -211,202 +124,169 @@ Best regards,`
 
   return (
     <div id="top" ref={pageRef} className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <Y2KBanner />
       <SiteNav onContact={handleSendMessage} onGithub={handleGithubClick} />
 
-      {/* Hero — brand, headline, line, CTAs, full-bleed sky */}
-      <section className="relative flex min-h-[100svh] items-end pb-16 pt-28 md:items-center md:pb-24 md:pt-24">
-        <SunshineSky />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-8">
-          <div className="max-w-2xl space-y-6">
-            <p className="hero-brand font-script text-5xl leading-none text-sky-deep md:text-7xl lg:text-8xl">
+      {/* Compact hero */}
+      <section className="y2k-bg relative py-10 md:py-14">
+        <Y2KBubbles />
+        <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-start gap-6 px-4 md:flex-row md:items-center md:gap-10 md:px-6">
+          <div className="hero-avatar relative h-20 w-20 shrink-0 animate-float overflow-hidden rounded-full ring-4 ring-neon-pink/60 ring-offset-2 ring-offset-background md:h-24 md:w-24">
+            <Image
+              src="https://github.com/MinThantZinTun21.png"
+              alt="Min Thant Zin Tun"
+              fill
+              className="object-cover"
+              sizes="96px"
+              priority
+            />
+          </div>
+
+          <div className="min-w-0 flex-1 space-y-3">
+            <p className="hero-brand font-display text-2xl font-bold text-neon-pink y2k-glow md:text-4xl">
               Min Thant Zin Tun
             </p>
-            <h1 className="hero-headline text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
-              Android that feels like morning light
+            <h1 className="hero-line text-base font-semibold text-neon-cyan md:text-xl">
+              Android that hits different — Y2K chrome edition
             </h1>
-            <p className="hero-copy max-w-lg text-lg text-muted-foreground md:text-xl">
-              Ten years of shipping mobile products that stay fast, clear, and kind to users.
+            <p className="hero-line max-w-lg text-sm text-muted-foreground">
+              10 years shipping mobile products. Style #21 · compact · high motion.
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-wrap gap-2 pt-1">
               <button
                 type="button"
                 onClick={handleSendMessage}
-                className="hero-cta inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-accent-foreground shadow-lg transition-transform duration-200 hover:scale-[1.03] focus-ring"
+                className="hero-cta chrome-btn inline-flex h-10 cursor-pointer items-center gap-2 rounded-full px-5 text-xs font-bold uppercase tracking-wider text-primary-foreground transition-transform duration-200 hover:scale-105 active:scale-95 focus-ring"
               >
-                <Mail className="h-5 w-5" />
-                Start a project
+                <Mail className="h-3.5 w-3.5" />
+                Start project
               </button>
               <a
                 href="#projects"
-                className="hero-cta inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full border border-sky-deep/20 bg-white/50 px-8 text-base font-semibold text-sky-deep backdrop-blur-sm transition-colors duration-200 hover:bg-white/80 focus-ring"
+                className="hero-cta inline-flex h-10 cursor-pointer items-center rounded-full border border-neon-cyan/50 px-5 text-xs font-bold uppercase tracking-wider text-neon-cyan transition-all duration-200 hover:bg-neon-cyan/10 hover:scale-105 focus-ring"
               >
-                See the work
+                See work
               </a>
             </div>
           </div>
         </div>
+
+        <div id="stats" className="relative z-10 mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-2 px-4 sm:grid-cols-4 md:px-6">
+          {[
+            { n: "50+", l: "Apps" },
+            { n: "10+", l: "Years" },
+            { n: "15+", l: "Led" },
+            { n: "1M+", l: "Downloads" },
+          ].map((s) => (
+            <div
+              key={s.l}
+              className="stat-chip glossy-card rounded-2xl px-3 py-3 text-center transition-transform duration-200 hover:-translate-y-1 hover:border-neon-pink/50"
+            >
+              <div className="font-display text-lg text-neon-cyan md:text-xl">{s.n}</div>
+              <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{s.l}</div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="reveal-section relative z-10 py-[var(--space-3xl)]">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-8">
-          <div className="space-y-6">
-            <p className="reveal-item font-script text-3xl text-primary md:text-4xl">About</p>
-            <h2 className="reveal-item text-3xl font-semibold leading-tight md:text-4xl">
-              Building mobile stories across{" "}
-              <span className="text-primary">finance, health, and play</span>
-            </h2>
-            <p className="reveal-item text-lg text-muted-foreground">
-              I&apos;ve spent a decade shaping Android apps for startups and enterprise teams —
-              clean architecture, careful performance, and experiences people actually enjoy.
+      {/* About compact */}
+      <section id="about" className="border-t border-border py-10 md:py-12">
+        <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-2 md:px-6">
+          <div className="reveal space-y-3">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neon-pink">About</p>
+            <h2 className="font-display text-xl font-bold md:text-2xl">Built for speed & gloss</h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Decade of Android for startups and enterprise — clean architecture, sharp performance, interfaces that feel alive.
             </p>
-            <p className="reveal-item text-lg text-muted-foreground">
-              Outside of shipping, I teach and mentor so the next wave of developers can move faster with confidence.
-            </p>
-            <ul className="reveal-item space-y-3 pt-2">
-              <li className="flex items-center gap-3 text-foreground/80">
-                <GraduationCap className="h-5 w-5 text-accent" />
-                B.Sc. Computer Science — Thaton University
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-center gap-2">
+                <GraduationCap className="h-4 w-4 text-neon-cyan" />
+                B.Sc. CS — Thaton University
               </li>
-              <li className="flex items-center gap-3 text-foreground/80">
-                <Award className="h-5 w-5 text-accent" />
-                Android Development Instructor — 1.5 years
+              <li className="flex items-center gap-2">
+                <Award className="h-4 w-4 text-neon-cyan" />
+                Android Instructor — 1.5 yrs
               </li>
-              <li className="flex items-center gap-3 text-foreground/80">
-                <BookOpen className="h-5 w-5 text-accent" />
-                Software Engineering Diploma — 6 months
+              <li className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4 text-neon-cyan" />
+                SE Diploma — 6 months
               </li>
             </ul>
           </div>
-
-          <div className="reveal-item relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-sun/40 via-sky-mid/20 to-transparent blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 shadow-xl">
-              <Image
-                src="https://github.com/MinThantZinTun21.png"
-                alt="Portrait of Min Thant Zin Tun"
-                width={480}
-                height={480}
-                className="aspect-square w-full object-cover"
-                priority
-              />
-            </div>
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              {[
-                { number: "50+", label: "Apps delivered" },
-                { number: "10+", label: "Years building" },
-                { number: "15+", label: "People led" },
-                { number: "1M+", label: "Downloads" },
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-2xl bg-white/70 px-4 py-3 text-center shadow-sm backdrop-blur-sm">
-                  <div className="font-script text-3xl text-sky-deep">{stat.number}</div>
-                  <div className="text-xs font-medium text-muted-foreground">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+          <div className="reveal grid grid-cols-3 gap-2 content-start">
+            {["Kotlin", "Compose", "MVVM", "CI/CD", "Mentoring", "Ship"].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-neon-pink/30 bg-neon-pink/10 px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wide text-neon-pink transition-transform duration-200 hover:scale-105"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Projects */}
-      <section id="projects" className="reveal-section relative bg-white/40 py-[var(--space-3xl)]">
-        <div className="mx-auto max-w-6xl px-6 md:px-8">
-          <div className="mb-14 max-w-2xl space-y-4">
-            <p className="reveal-item font-script text-3xl text-primary md:text-4xl">Projects</p>
-            <h2 className="reveal-item text-3xl font-semibold md:text-4xl">Work that ships in the sun</h2>
-            <p className="reveal-item text-lg text-muted-foreground">
-              Selected apps across industries — each one tuned for clarity, speed, and trust.
-            </p>
+      {/* Projects compact magnetic grid */}
+      <section id="projects" className="border-t border-border bg-muted/30 py-10 md:py-12">
+        <div className="mx-auto max-w-5xl px-4 md:px-6">
+          <div className="reveal mb-6 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-neon-cyan">Work</p>
+              <h2 className="font-display text-xl font-bold md:text-2xl">Selected drops</h2>
+            </div>
+            <p className="hidden text-xs text-muted-foreground sm:block">Hover = magnetic pull</p>
           </div>
 
-          <div id="projects-grid" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div id="projects-grid" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
-              <article
-                key={project.title}
-                className="project-tile group cursor-pointer rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-sun text-accent-foreground transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">
-                  <project.icon className="h-6 w-6" />
-                </div>
-                <p className="text-sm font-medium text-primary">{project.category}</p>
-                <h3 className="mt-1 text-xl font-semibold">{project.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </article>
+              <MagneticCard key={project.title}>
+                <article className="project-tile glossy-card group cursor-pointer rounded-2xl p-4 transition-colors duration-200 hover:border-neon-cyan/50">
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-neon-pink to-neon-cyan text-primary-foreground transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6">
+                    <project.icon className="h-4 w-4" />
+                  </div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-neon-pink">{project.category}</p>
+                  <h3 className="mt-0.5 font-display text-sm font-bold">{project.title}</h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{project.description}</p>
+                  <div className="mt-2.5 flex flex-wrap gap-1">
+                    {project.technologies.map((t) => (
+                      <span key={t} className="rounded-full bg-muted px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-muted-foreground">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </MagneticCard>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Journey — pinned on desktop */}
-      <section id="journey" className="relative">
-        <div id="journey-pin" className="mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-6 py-24 md:px-8">
-          <div className="mb-10 space-y-3">
-            <p className="font-script text-3xl text-primary md:text-4xl">Journey</p>
-            <h2 className="text-3xl font-semibold md:text-4xl">Industries I&apos;ve lit up</h2>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-border">
-              <div className="journey-progress h-full w-full origin-left scale-x-0 rounded-full bg-gradient-to-r from-accent via-sun to-primary" />
-            </div>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {domains.map((domain) => (
-              <div
-                key={domain.name}
-                className="journey-item flex items-start gap-4 rounded-3xl border border-border bg-white/70 p-5 backdrop-blur-sm"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-                  <domain.icon className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">{domain.name}</h3>
-                  <p className="text-sm text-muted-foreground">{domain.description}</p>
-                  <p className="mt-1 text-sm font-semibold text-accent">{domain.projects} projects</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section id="skills" className="reveal-section bg-gradient-to-b from-transparent to-sky-soft py-[var(--space-3xl)]">
-        <div className="mx-auto max-w-6xl px-6 md:px-8">
-          <div className="mb-12 space-y-3">
-            <p className="reveal-item font-script text-3xl text-primary md:text-4xl">Craft</p>
-            <h2 className="reveal-item text-3xl font-semibold md:text-4xl">Skills & tools</h2>
-          </div>
-
-          <div className="mb-14 grid gap-6 md:grid-cols-2">
-            {skills.map((skill) => (
-              <div key={skill.name} className="reveal-item space-y-2">
-                <div className="flex justify-between text-sm font-medium">
+      {/* Skills compact */}
+      <section id="skills" className="border-t border-border py-10 md:py-12">
+        <div className="mx-auto max-w-5xl px-4 md:px-6">
+          <p className="reveal text-[10px] font-bold uppercase tracking-[0.25em] text-neon-pink">Stack</p>
+          <h2 className="reveal mb-5 font-display text-xl font-bold md:text-2xl">Skills & tools</h2>
+          <div className="mb-6 grid gap-3 sm:grid-cols-2">
+            {skills.map((skill, i) => (
+              <div key={skill.name} className="reveal space-y-1">
+                <div className="flex justify-between text-[11px] font-bold uppercase tracking-wide">
                   <span>{skill.name}</span>
-                  <span className="text-primary">{skill.years}</span>
+                  <span className="text-neon-cyan">{skill.level}%</span>
                 </div>
-                <div className="h-2.5 overflow-hidden rounded-full bg-border">
+                <div className="h-2 overflow-hidden rounded-full bg-muted">
                   <div
-                    className="skill-fill h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                    className={`skill-fill h-full rounded-full ${i % 2 === 0 ? "bg-gradient-to-r from-neon-pink to-neon-cyan" : "bg-gradient-to-r from-neon-cyan to-chrome"}`}
                     style={{ width: `${skill.level}%` }}
                   />
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-1.5">
             {techs.map((tech) => (
               <span
                 key={tech}
-                className="reveal-item rounded-full border border-border bg-white/80 px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-200 hover:border-primary hover:text-primary"
+                className="reveal cursor-default rounded-full border border-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-muted-foreground transition-all duration-200 hover:border-neon-pink hover:text-neon-pink hover:scale-105"
               >
                 {tech}
               </span>
@@ -415,80 +295,61 @@ Best regards,`
         </div>
       </section>
 
-      {/* Contact climax */}
-      <section id="contact" className="reveal-section relative overflow-hidden py-[var(--space-3xl)]">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sun/30 via-sky-mid/20 to-primary/20" />
-        <div className="relative mx-auto max-w-3xl px-6 text-center md:px-8">
-          <p className="reveal-item font-script text-4xl text-sky-deep md:text-5xl">Let&apos;s build</p>
-          <h2 className="reveal-item mt-4 text-3xl font-semibold leading-tight md:text-5xl">
-            Ready for something bright together?
-          </h2>
-          <p className="reveal-item mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            Tell me about your next Android idea — I&apos;ll help turn it into a product that feels alive.
-          </p>
-
-          <div className="reveal-item mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      {/* Contact compact */}
+      <section id="contact" className="border-t border-border bg-gradient-to-br from-neon-pink/15 via-background to-neon-cyan/15 py-10 md:py-12">
+        <div className="reveal mx-auto max-w-xl px-4 text-center md:px-6">
+          <p className="font-display text-xs font-bold tracking-[0.3em] text-neon-cyan">PING ME</p>
+          <h2 className="mt-2 font-display text-2xl font-bold y2k-glow md:text-3xl">Let&apos;s ship something glossy</h2>
+          <p className="mt-2 text-sm text-muted-foreground">Drop a line — Android ideas welcome.</p>
+          <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-center">
             <a
               href="mailto:minthantzintun21@gmail.com"
-              className="inline-flex h-12 min-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-full bg-white/80 px-6 font-medium text-sky-deep shadow-sm transition-colors duration-200 hover:bg-white focus-ring"
+              className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-full border border-border px-4 text-xs font-bold focus-ring hover:border-neon-cyan"
             >
-              <Mail className="h-5 w-5" />
+              <Mail className="h-3.5 w-3.5" />
               minthantzintun21@gmail.com
             </a>
             <a
               href="tel:+959975816345"
-              className="inline-flex h-12 min-w-[220px] cursor-pointer items-center justify-center gap-2 rounded-full bg-white/80 px-6 font-medium text-sky-deep shadow-sm transition-colors duration-200 hover:bg-white focus-ring"
+              className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-full border border-border px-4 text-xs font-bold focus-ring hover:border-neon-pink"
             >
-              <Phone className="h-5 w-5" />
+              <Phone className="h-3.5 w-3.5" />
               +959975816345
             </a>
           </div>
-
-          <div className="reveal-item mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <div className="mt-4 flex justify-center gap-2">
             <button
               type="button"
               onClick={handleSendMessage}
-              className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-lg transition-transform duration-200 hover:scale-[1.03] focus-ring"
+              className="chrome-btn inline-flex h-10 cursor-pointer items-center gap-2 rounded-full px-6 text-xs font-bold uppercase tracking-wider text-primary-foreground transition-transform duration-200 hover:scale-105 active:scale-95 focus-ring"
             >
-              <Mail className="h-5 w-5" />
-              Send a message
+              Send message
             </button>
             <button
               type="button"
               onClick={handleGithubClick}
-              className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full border border-sky-deep/25 bg-transparent px-10 text-base font-semibold text-sky-deep transition-colors duration-200 hover:bg-white/50 focus-ring"
+              className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border border-neon-cyan/40 px-6 text-xs font-bold uppercase tracking-wider text-neon-cyan transition-transform duration-200 hover:scale-105 focus-ring"
             >
-              <Github className="h-5 w-5" />
-              View GitHub
+              <Github className="h-3.5 w-3.5" />
+              GitHub
             </button>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-border bg-white/60 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row md:px-8">
+      <footer className="border-t border-border py-6">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 md:flex-row md:px-6">
           <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-sun">
-              <Smartphone className="h-5 w-5 text-accent-foreground" />
-            </div>
-            <span className="font-script text-2xl text-sky-deep">Min Thant Zin Tun</span>
+            <Smartphone className="h-3.5 w-3.5 text-neon-pink" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">MTZT · Style #21 Y2K</span>
           </div>
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Min Thant Zin Tun</p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handleGithubClick}
-              aria-label="GitHub"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-sky-deep transition-colors duration-200 hover:bg-muted focus-ring"
-            >
-              <Github className="h-5 w-5" />
+          <p className="text-[10px] text-muted-foreground">© {new Date().getFullYear()} · 50 styles catalogued</p>
+          <div className="flex gap-1">
+            <button type="button" onClick={handleGithubClick} aria-label="GitHub" className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full focus-ring hover:text-neon-cyan">
+              <Github className="h-3.5 w-3.5" />
             </button>
-            <button
-              type="button"
-              aria-label="LinkedIn"
-              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-sky-deep transition-colors duration-200 hover:bg-muted focus-ring"
-            >
-              <Linkedin className="h-5 w-5" />
+            <button type="button" aria-label="LinkedIn" className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full focus-ring hover:text-neon-pink">
+              <Linkedin className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>

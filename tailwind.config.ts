@@ -8,11 +8,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "*.{js,ts,jsx,tsx,mdx}"
   ],
-	theme: {
+  theme: {
   	extend: {
   		fontFamily: {
-  			script: ['var(--font-caveat)', 'cursive'],
-  			sans: ['var(--font-quicksand)', 'system-ui', 'sans-serif'],
+  			display: ['var(--font-orbitron)', 'system-ui', 'sans-serif'],
+  			sans: ['var(--font-exo)', 'system-ui', 'sans-serif'],
   		},
   		colors: {
   			background: 'hsl(var(--background))',
@@ -48,11 +48,9 @@ const config: Config = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
-  			sun: 'hsl(var(--sun))',
-  			'sun-glow': 'hsl(var(--sun-glow))',
-  			'sky-deep': 'hsl(var(--sky-deep))',
-  			'sky-mid': 'hsl(var(--sky-mid))',
-  			'sky-soft': 'hsl(var(--sky-soft))',
+  			'neon-pink': 'hsl(var(--neon-pink))',
+  			'neon-cyan': 'hsl(var(--neon-cyan))',
+  			chrome: 'hsl(var(--chrome))',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
@@ -73,40 +71,27 @@ const config: Config = {
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			md: 'calc(var(--radius) - 4px)',
+  			sm: 'calc(var(--radius) - 8px)'
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
+  				from: { height: '0' },
+  				to: { height: 'var(--radix-accordion-content-height)' }
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
+  				from: { height: 'var(--radix-accordion-content-height)' },
+  				to: { height: '0' }
   			},
-  			'ray-pulse': {
-  				'0%, 100%': { opacity: '0.35', transform: 'scaleY(1)' },
-  				'50%': { opacity: '0.7', transform: 'scaleY(1.08)' },
-  			},
-  			'cloud-drift': {
-  				'0%': { transform: 'translateX(0)' },
-  				'100%': { transform: 'translateX(40px)' },
+  			float: {
+  				'0%, 100%': { transform: 'translateY(0)' },
+  				'50%': { transform: 'translateY(-8px)' },
   			},
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'ray-pulse': 'ray-pulse 6s ease-in-out infinite',
-  			'cloud-drift': 'cloud-drift 18s ease-in-out infinite alternate',
+  			float: 'float 4s ease-in-out infinite',
   		}
   	}
   },

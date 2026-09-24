@@ -10,55 +10,53 @@
 
 @layer base {
   :root {
-    /* Sunshine palette — sky blue + sun amber */
-    --background: 204 100% 97%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 199 89% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 200 60% 96%;
-    --muted-foreground: 215 16% 37%;
-    --accent: 38 92% 50%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 72% 51%;
+    /* Y2K #21 — pink / cyan / chrome on dark */
+    --background: 240 25% 6%;
+    --foreground: 260 40% 95%;
+    --card: 240 18% 11%;
+    --card-foreground: 260 40% 95%;
+    --popover: 240 25% 6%;
+    --popover-foreground: 260 40% 95%;
+    --primary: 330 100% 71%;
+    --primary-foreground: 240 20% 6%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 240 20% 6%;
+    --muted: 240 16% 15%;
+    --muted-foreground: 260 12% 68%;
+    --accent: 0 0% 75%;
+    --accent-foreground: 240 20% 6%;
+    --destructive: 328 100% 54%;
     --destructive-foreground: 0 0% 100%;
-    --border: 199 55% 90%;
-    --input: 199 55% 90%;
-    --ring: 199 89% 40%;
+    --border: 250 20% 26%;
+    --input: 250 20% 26%;
+    --ring: 180 100% 50%;
     --radius: 1rem;
 
-    --sun: 43 96% 56%;
-    --sun-glow: 38 92% 50%;
-    --sky-deep: 200 98% 32%;
-    --sky-mid: 199 89% 48%;
-    --sky-soft: 204 100% 97%;
+    --neon-pink: 330 100% 71%;
+    --neon-cyan: 180 100% 50%;
+    --chrome: 0 0% 75%;
 
-    --chart-1: 199 89% 40%;
-    --chart-2: 38 92% 50%;
-    --chart-3: 43 96% 56%;
-    --chart-4: 200 98% 32%;
-    --chart-5: 199 89% 48%;
-    --sidebar-background: 204 100% 97%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 199 89% 40%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 60% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 199 55% 90%;
-    --sidebar-ring: 199 89% 40%;
+    --chart-1: 330 100% 71%;
+    --chart-2: 180 100% 50%;
+    --chart-3: 0 0% 75%;
+    --chart-4: 280 80% 60%;
+    --chart-5: 260 40% 95%;
+    --sidebar-background: 240 25% 6%;
+    --sidebar-foreground: 260 40% 95%;
+    --sidebar-primary: 330 100% 71%;
+    --sidebar-primary-foreground: 240 20% 6%;
+    --sidebar-accent: 240 16% 15%;
+    --sidebar-accent-foreground: 260 40% 95%;
+    --sidebar-border: 250 20% 26%;
+    --sidebar-ring: 180 100% 50%;
 
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
-    --space-md: 1.5rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
-    --space-2xl: 4rem;
-    --space-3xl: 6rem;
+    --space-md: 0.75rem;
+    --space-lg: 1.25rem;
+    --space-xl: 1.75rem;
+    --space-2xl: 2.5rem;
+    --space-3xl: 3.5rem;
   }
 
   * {
@@ -85,33 +83,69 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-quicksand), system-ui, sans-serif;
+    font-family: var(--font-exo), system-ui, sans-serif;
   }
 
   h1,
   h2,
   h3,
-  .font-script {
-    font-family: var(--font-caveat), cursive;
+  .font-display {
+    font-family: var(--font-orbitron), system-ui, sans-serif;
+    letter-spacing: 0.02em;
   }
 }
 
 @layer components {
-  .sun-sky {
-    background:
-      radial-gradient(ellipse 80% 50% at 70% 15%, hsl(43 96% 56% / 0.55), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 20% 80%, hsl(199 89% 48% / 0.25), transparent 50%),
-      linear-gradient(180deg, #7dd3fc 0%, #bae6fd 28%, #e0f2fe 55%, #f0f9ff 100%);
+  .y2k-glow {
+    text-shadow:
+      0 0 8px hsl(330 100% 71% / 0.7),
+      0 0 24px hsl(180 100% 50% / 0.35);
   }
 
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.55);
+  .chrome-btn {
+    background: linear-gradient(180deg, #f0f0f0 0%, #c0c0c0 45%, #888 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 0 16px hsl(180 100% 50% / 0.35);
+  }
+
+  .glossy-card {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 40%),
+      hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 0 0 1px hsl(330 100% 71% / 0.15), 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .y2k-bg {
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 10%, hsl(330 100% 71% / 0.25), transparent 55%),
+      radial-gradient(ellipse 50% 35% at 10% 80%, hsl(180 100% 50% / 0.18), transparent 50%),
+      linear-gradient(180deg, #0a0a14 0%, #12121f 50%, #0a0a14 100%);
   }
 
   .focus-ring {
-    @apply outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 22s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
   }
 }
