@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="360" y1="0" x2="360" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8E4EC"/>
+      <stop offset="0.45" stop-color="#E8E4DE"/>
+      <stop offset="1" stop-color="#C9D6C8"/>
+    </linearGradient>
+    <linearGradient id="water" x1="360" y1="560" x2="360" y2="1280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8BDB0"/>
+      <stop offset="0.5" stop-color="#8FA9A0"/>
+      <stop offset="1" stop-color="#6E8A7C"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="480" x2="720" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2E6DC" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#E8D4C8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#F2E6DC" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="1280" fill="url(#sky)"/>
+  <path d="M0 520 C120 480 200 540 320 510 C440 480 520 530 720 500 L720 620 L0 620 Z" fill="#B7C4B0" opacity="0.55"/>
+  <path d="M0 560 C160 530 280 590 420 555 C560 520 640 570 720 545 L720 700 L0 700 Z" fill="#9AAD9A" opacity="0.45"/>
+  <rect y="580" width="720" height="700" fill="url(#water)"/>
+  <ellipse cx="360" cy="600" rx="420" ry="48" fill="url(#mist)"/>
+  <path d="M0 640 Q180 620 360 645 T720 630" stroke="#E8F0EA" stroke-opacity="0.35" stroke-width="2" fill="none"/>
+  <path d="M0 720 Q200 700 400 725 T720 710" stroke="#D4E4DA" stroke-opacity="0.28" stroke-width="1.5" fill="none"/>
+  <path d="M0 820 Q160 800 360 825 T720 805" stroke="#C8DCD0" stroke-opacity="0.22" stroke-width="1.5" fill="none"/>
+</svg>

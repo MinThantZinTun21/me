@@ -1,6 +1,6 @@
 # Design Styles Catalog (1–50)
 
-> Source of truth for style switching. **Active site style: #21 Y2K.**
+> Source of truth for style switching. **Active: Pencil Paint (#9 Conceptual Sketch + #33 Mixed Media).**
 > Each entry maps to keywords for ui-ux-pro-max / implementation notes.
 > DB match = found in ui-ux-pro-max `styles.csv`; otherwise researched fallback.
 
@@ -9,15 +9,15 @@
 | 1 | Neoclassical | columns, marble, symmetry, serif, restrained gold | — | Formal editorial |
 | 2 | Baroque | ornate, drama, gold scrollwork, chiaroscuro | — | Heavy ornament |
 | 3 | Aurora | northern lights, soft gradients, glow bands | — | Ambient color washes |
-| 4 | Ethereal | soft focus, mist, translucent, dreamlike | — | Low contrast haze |
+| 4 | **Ethereal** ★ ACTIVE | soft focus, mist, translucent, dreamlike | — | Low contrast haze |
 | 5 | Filigree | fine metal lace, delicate linework | — | Decorative borders |
 | 6 | Acanthus | classical leaf motif, carved relief | — | Ornamental botanical |
 | 7 | Anthropomorphic | humanized objects, character faces | — | Playful personification |
 | 8 | Pixel Art | 8-bit, block, alias, Press Start | ~ | Retro gaming |
 | 9 | Conceptual Sketch | pencil, wireframe, unfinished | — | Process aesthetic |
 | 10 | Luxury Typography | oversized type, tracking, editorial | ~ | Type as hero |
-| 11 | Japandi | wabi + scandi, warm neutrals, ma | — | Calm craft |
-| 12 | Memphis | 80s shapes, squiggles, primary pops | — | Postmodern play |
+| 11 | **Japandi** ★ ACTIVE | wabi + scandi, warm neutrals, ma | — | Calm craft |
+| 12 | Memphis | 80s shapes, squiggles, primary pops | ✅ `memphis-design` | Postmodern play |
 | 13 | Bohemian | layered textiles, warm, eclectic | — | Maximal wanderlust |
 | 14 | Shabby Chic | distressed pastels, florals, lace | — | Soft vintage |
 | 15 | Farmhouse / Cottagecore | linen, wood, pastoral | ~ | Nature Distilled |
@@ -26,13 +26,13 @@
 | 18 | Art Nouveau | organic curves, Mucha, flora | — | Whiplash line |
 | 19 | Mystical Western | desert dusk, occult cowboy | — | Dust + myth |
 | 20 | Kitsch | gaudy, souvenir, ironic cute | — | Camp humor |
-| 21 | **Y2K** ★ ACTIVE | chrome, pink, cyan, bubbles, gloss | ✅ `y2k-aesthetic` | Neon nostalgia |
+| 21 | Y2K | chrome, pink, cyan, bubbles, gloss | ✅ `y2k-aesthetic` | Neon nostalgia |
 | 22 | Bauhaus | primary RGBY, Outfit, hard shadow | ✅ `bauhaus` | Form/function |
 | 23 | Brutalism | raw, system fonts, visible borders | ✅ `brutalism` | Anti-polish |
 | 24 | Cybercore | matrix, HUD, terminal | ~ cyberpunk | Tech noir |
 | 25 | Synthwave | sunset grid, neon magenta/cyan | — | 80s retrowave |
 | 26 | Vaporwave | pastel greek busts, VHS, pink/teal | — | Irony nostalgia |
-| 27 | Pop Art | Ben-Day, comic halftone, CMYK | — | Warhol punch |
+| 27 | Pop Art | Ben-Day, comic, CMYK punch | ~ neubrutal | Warhol punch |
 | 28 | Bento Box | modular tiles, Apple-like cards | ✅ bento | Grid modules |
 | 29 | Graffiti | spray, tags, street type | — | Urban mark-making |
 | 30 | Tenebrism | void black + single spotlight | ~ OLED | Caravaggio light |
@@ -49,7 +49,7 @@
 | 41 | Neo Frutiger Aero | gloss orbs, sky blue, skeuo | — | 2000s web |
 | 42 | Dark Magic Academia | candles, grimoire, emerald | — | Occult scholar |
 | 43 | Light Academia | parchment, sepia, libraries | — | Soft scholarly |
-| 44 | Wabi Sabi | imperfect, grain, muted earth | — | Beauty in wear |
+| 44 | **Wabi Sabi** ★ ACTIVE | imperfect, grain, muted earth | — | Beauty in wear |
 | 45 | South West / Wild West | adobe, turquoise, desert | — | Mesa palette |
 | 46 | Nautical | navy, rope, stripes, brass | — | Maritime |
 | 47 | Rebus | puzzle icons as language | — | Visual riddles |
@@ -59,12 +59,13 @@
 
 ## Active implementation
 
-- **Style:** #21 Y2K
-- **Motion dial:** 10 (complex) — GSAP + Lottie banner
-- **Density:** 7 (compact)
-- **Variance:** 8 (bold / asymmetric)
-- **Fonts:** Orbitron (display) + Exo 2 (body)
-- **Motion stack:** `lottie-react` banner · GSAP ScrollTrigger/stagger · magnetic hover · marquee
+- **Style:** Pencil Paint — #9 Conceptual Sketch + #33 Mixed Media
+- **Motion dial:** 5 — wash drift, soft reveal, sketch underline draw
+- **Density:** 5 (balanced) · **Variance:** 7 (asymmetric / tilted)
+- **Fonts:** Kalam + Patrick Hand
+- **Layout:** Sketchbook paper, pencil borders, watercolor washes, wobbly radii
+- **MASTER:** `design-system/pencil-paint-portfolio/`
+- **Content source:** Resume PDF `min-thant-zin-tun-resume.pdf` (facts) + pencil-paint voice
 
 ## Switching styles later
 

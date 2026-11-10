@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="fur" x1="40" y1="30" x2="160" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7A7874"/>
+      <stop offset="0.55" stop-color="#5E5C5A"/>
+      <stop offset="1" stop-color="#4A4846"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="110" cy="130" rx="46" ry="40" fill="url(#fur)"/>
+  <ellipse cx="140" cy="148" rx="26" ry="24" fill="#555350"/>
+  <ellipse cx="80" cy="134" rx="20" ry="26" fill="#6E6C68"/>
+  <circle cx="74" cy="78" r="32" fill="url(#fur)"/>
+  <path d="M50 56 L44 28 L70 50 Z" fill="#5E5C5A"/>
+  <path d="M88 50 L100 24 L110 56 Z" fill="#5E5C5A"/>
+  <path d="M52 54 L48 34 L66 50 Z" fill="#C4A99A" opacity="0.5"/>
+  <path d="M92 50 L100 32 L106 54 Z" fill="#C4A99A" opacity="0.5"/>
+  <circle cx="64" cy="78" r="3" fill="#1F1E1C"/>
+  <circle cx="84" cy="76" r="3" fill="#1F1E1C"/>
+  <ellipse cx="74" cy="88" rx="3.5" ry="2.5" fill="#3A3530"/>
+  <path d="M152 128 C178 108 184 148 162 166 C150 174 144 158 152 128Z" fill="#5E5C5A"/>
+  <ellipse cx="72" cy="168" rx="11" ry="7" fill="#555350"/>
+  <ellipse cx="100" cy="170" rx="11" ry="7" fill="#555350"/>
+</svg>

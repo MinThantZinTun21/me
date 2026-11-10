@@ -10,53 +10,46 @@
 
 @layer base {
   :root {
-    /* Y2K #21 — pink / cyan / chrome on dark */
-    --background: 240 25% 6%;
-    --foreground: 260 40% 95%;
-    --card: 240 18% 11%;
-    --card-foreground: 260 40% 95%;
-    --popover: 240 25% 6%;
-    --popover-foreground: 260 40% 95%;
-    --primary: 330 100% 71%;
-    --primary-foreground: 240 20% 6%;
-    --secondary: 180 100% 50%;
-    --secondary-foreground: 240 20% 6%;
-    --muted: 240 16% 15%;
-    --muted-foreground: 260 12% 68%;
-    --accent: 0 0% 75%;
-    --accent-foreground: 240 20% 6%;
-    --destructive: 328 100% 54%;
+    /* Pencil Paint — Conceptual Sketch + Mixed Media */
+    --background: 40 33% 94%;
+    --foreground: 0 0% 18%;
+    --card: 48 60% 99%;
+    --card-foreground: 0 0% 18%;
+    --popover: 48 60% 99%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 214 57% 40%;
+    --primary-foreground: 40 33% 96%;
+    --secondary: 18 68% 46%;
+    --secondary-foreground: 40 33% 96%;
+    --muted: 36 28% 88%;
+    --muted-foreground: 30 8% 33%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 40 33% 96%;
+    --destructive: 0 72% 42%;
     --destructive-foreground: 0 0% 100%;
-    --border: 250 20% 26%;
-    --input: 250 20% 26%;
-    --ring: 180 100% 50%;
-    --radius: 1rem;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 214 57% 40%;
+    --radius: 1.1rem;
 
-    --neon-pink: 330 100% 71%;
-    --neon-cyan: 180 100% 50%;
-    --chrome: 0 0% 75%;
+    --pencil: 0 0% 18%;
+    --wash-blue: 214 55% 78%;
+    --wash-coral: 14 70% 75%;
+    --wash-yellow: 48 78% 80%;
 
-    --chart-1: 330 100% 71%;
-    --chart-2: 180 100% 50%;
-    --chart-3: 0 0% 75%;
-    --chart-4: 280 80% 60%;
-    --chart-5: 260 40% 95%;
-    --sidebar-background: 240 25% 6%;
-    --sidebar-foreground: 260 40% 95%;
-    --sidebar-primary: 330 100% 71%;
-    --sidebar-primary-foreground: 240 20% 6%;
-    --sidebar-accent: 240 16% 15%;
-    --sidebar-accent-foreground: 260 40% 95%;
-    --sidebar-border: 250 20% 26%;
-    --sidebar-ring: 180 100% 50%;
-
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 0.75rem;
-    --space-lg: 1.25rem;
-    --space-xl: 1.75rem;
-    --space-2xl: 2.5rem;
-    --space-3xl: 3.5rem;
+    --chart-1: 214 57% 40%;
+    --chart-2: 18 68% 46%;
+    --chart-3: 48 78% 55%;
+    --chart-4: 0 0% 18%;
+    --chart-5: 30 8% 45%;
+    --sidebar-background: 40 33% 94%;
+    --sidebar-foreground: 0 0% 18%;
+    --sidebar-primary: 214 57% 40%;
+    --sidebar-primary-foreground: 40 33% 96%;
+    --sidebar-accent: 36 28% 88%;
+    --sidebar-accent-foreground: 0 0% 18%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 214 57% 40%;
   }
 
   * {
@@ -83,69 +76,139 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-exo), system-ui, sans-serif;
+    font-family: var(--font-patrick), "Comic Sans MS", cursive, system-ui;
+    line-height: 1.65;
   }
 
   h1,
   h2,
   h3,
-  .font-display {
-    font-family: var(--font-orbitron), system-ui, sans-serif;
-    letter-spacing: 0.02em;
+  .font-hand {
+    font-family: var(--font-kalam), cursive, system-ui;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .font-body {
+    font-family: var(--font-patrick), cursive, system-ui;
+  }
+
+  :focus-visible {
+    outline: 2px dashed hsl(var(--primary));
+    outline-offset: 3px;
   }
 }
 
 @layer components {
-  .y2k-glow {
-    text-shadow:
-      0 0 8px hsl(330 100% 71% / 0.7),
-      0 0 24px hsl(180 100% 50% / 0.35);
+  .paper-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
   }
 
-  .chrome-btn {
-    background: linear-gradient(180deg, #f0f0f0 0%, #c0c0c0 45%, #888 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.7),
-      0 0 16px hsl(180 100% 50% / 0.35);
+  .wash {
+    border-radius: 45% 55% 60% 40% / 50% 40% 60% 50%;
+    filter: blur(2px);
+    opacity: 0.45;
   }
 
-  .glossy-card {
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 40%),
-      hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    box-shadow: 0 0 0 1px hsl(330 100% 71% / 0.15), 0 8px 32px rgba(0, 0, 0, 0.35);
+  .wash-blue {
+    background: radial-gradient(ellipse at center, hsl(var(--wash-blue)) 0%, transparent 70%);
   }
 
-  .y2k-bg {
-    background:
-      radial-gradient(ellipse 60% 40% at 80% 10%, hsl(330 100% 71% / 0.25), transparent 55%),
-      radial-gradient(ellipse 50% 35% at 10% 80%, hsl(180 100% 50% / 0.18), transparent 50%),
-      linear-gradient(180deg, #0a0a14 0%, #12121f 50%, #0a0a14 100%);
+  .wash-coral {
+    background: radial-gradient(ellipse at center, hsl(var(--wash-coral)) 0%, transparent 70%);
+  }
+
+  .wash-yellow {
+    background: radial-gradient(ellipse at center, hsl(var(--wash-yellow)) 0%, transparent 70%);
+  }
+
+  .wash-drift {
+    animation: wash-drift 12s ease-in-out infinite;
+  }
+
+  .wash-drift-slow {
+    animation: wash-drift 18s ease-in-out infinite reverse;
+  }
+
+  .sketch-radius {
+    border-radius: 15px 25px 20px 12px;
+  }
+
+  .sketch-radius-alt {
+    border-radius: 22px 12px 28px 16px;
+  }
+
+  .sketch-panel {
+    background: hsl(var(--card));
+    border: 2.5px solid hsl(var(--pencil));
+    border-radius: 18px 26px 16px 22px;
+    box-shadow: 4px 4px 0 hsl(var(--pencil));
+  }
+
+  .sketch-panel-tilt {
+    transform: rotate(-0.6deg);
+  }
+
+  .sketch-panel-tilt-r {
+    transform: rotate(0.7deg);
+  }
+
+  .sketch-btn {
+    border: 2.5px solid hsl(var(--pencil));
+    border-radius: 14px 20px 12px 18px;
+    box-shadow: 3px 3px 0 hsl(var(--pencil));
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .sketch-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 hsl(var(--pencil));
+  }
+
+  .sketch-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 hsl(var(--pencil));
+  }
+
+  .sketch-meter {
+    height: 12px;
+    border: 2px solid hsl(var(--pencil));
+    border-radius: 8px 12px 7px 10px;
+    background: hsl(var(--muted));
+    overflow: hidden;
+  }
+
+  .sketch-meter > span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--wash-blue)),
+      hsl(var(--primary))
+    );
+    border-radius: inherit;
   }
 
   .focus-ring {
-    @apply outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 22s linear infinite;
+  .sketch-underline {
+    background-image: linear-gradient(
+      transparent 60%,
+      hsl(var(--wash-yellow) / 0.7) 60%
+    );
   }
+}
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+@keyframes wash-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-    }
+  50% {
+    transform: translate(12px, -10px) scale(1.04);
   }
 }
